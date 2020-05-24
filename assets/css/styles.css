@@ -10,6 +10,11 @@
 	font-family: 'Roboto', sans-serif;
 }
 
+small{
+	color:#DB4437 !important;
+	margin-top:1%;
+}
+
 body{
 	background-color: #ededed !important;
 }
