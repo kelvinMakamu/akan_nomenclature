@@ -459,3 +459,14 @@ let submitAndDeriveAkanName = () => {
 		break;
 	}
 }
+
+let clearCheckNameForm = () => {
+	clearFormErrorMessages("all");
+	document.getElementById('date').value = "";
+	document.getElementById('month').value = "";
+	document.getElementById('year').value = "";
+	let genderChoices = document.getElementsByName("akan-gender");
+  for(var i=0;i<genderChoices.length;i++){
+    genderChoices[i].checked = false;
+  }
+}
