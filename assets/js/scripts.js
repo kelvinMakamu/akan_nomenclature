@@ -115,6 +115,17 @@ let displayFooterContent = (containerClass) =>{
 	"Copyright &copy; "+currentYear+". All Rights Reserved.</center>";
 	document.getElementById(containerClass).innerHTML+=content;
 }
+
+let clearCheckNameForm = () => {
+	clearFormErrorMessages("all");
+	document.getElementById('date').value = "";
+	document.getElementById('month').value = "";
+	document.getElementById('year').value = "";
+	let genderChoices = document.getElementsByName("akan-gender");
+  for(let counter=0;counter<genderChoices.length;counter++){
+    genderChoices[counter].checked = false;
+  }
+}
 /*************
 
 	VALIDATIONS
@@ -458,15 +469,4 @@ let submitAndDeriveAkanName = () => {
 		alert(akanName);
 		break;
 	}
-}
-
-let clearCheckNameForm = () => {
-	clearFormErrorMessages("all");
-	document.getElementById('date').value = "";
-	document.getElementById('month').value = "";
-	document.getElementById('year').value = "";
-	let genderChoices = document.getElementsByName("akan-gender");
-  for(var i=0;i<genderChoices.length;i++){
-    genderChoices[i].checked = false;
-  }
 }
