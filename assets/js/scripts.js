@@ -11,32 +11,11 @@ let currentDate= new Date();
 let currentMonth=currentDate.getMonth()+1;
 let currentYear=currentDate.getFullYear();
 
-/*************
+/*****************
 
-	VALIDATIONS
+	UTILITY FUNCTIONS
 
-*******************/
-let validateDate = (birthDate) => {
-	let errorDate=document.getElementById("dateHelp");
-	switch(validateNumber(birthDate)){
-		case 1000:
-		clearFormErrorMessages('date');
-		checkStatus=checkNumberLimit(birthDate,'date');
-		if(checkStatus == 1000){
-			clearFormErrorMessages('date');
-		}else if(checkStatus == 1002){
-			errorDate.innerHTML="Dates must be at MOST 2 DIGITS ONLY.";
-		}else if(checkStatus == 1003){
-			errorDate.innerHTML="Dates must not be GREATER than 31.";
-		}
-		break;
-
-		case 1001:
-		errorDate.innerHTML="Invalid Input. Enter DIGITS ONLY";
-		break;
-	}
-}
-
+*********************/
 let validateNumber = (number) => {
 	if(/^\d+$/.test(number)){
 		validStatus=1000;
@@ -110,6 +89,54 @@ let clearFormErrorMessages= (errorType) => {
 		document.getElementById("dateHelp").innerHTML="";
 		document.getElementById("monthHelp").innerHTML="";
 		document.getElementById("yearHelp").innerHTML="";
+		break;
+	}
+}
+
+let isLeapYear = (birthYear) => {
+	if(parseInt(birthYear) % 100 === 0){
+		if(parseInt(birthYear) % 400 === 0){
+			validLeapYear=1000;
+		}else{
+			validLeapYear=1015;
+		}
+	}else{
+		if(parseInt(birthYear) % 4 === 0){
+			validLeapYear=1000;
+		}else{
+			validLeapYear=1015;
+		}
+	}
+	return validLeapYear;
+}
+
+let displayFooterContent = (containerClass) =>{
+	let content="<center><span>akan nomenclature</span><br/><br/>"+
+	"Copyright &copy; "+currentYear+". All Rights Reserved.</center>";
+	document.getElementById(containerClass).innerHTML+=content;
+}
+/*************
+
+	VALIDATIONS
+
+*******************/
+let validateDate = (birthDate) => {
+	let errorDate=document.getElementById("dateHelp");
+	switch(validateNumber(birthDate)){
+		case 1000:
+		clearFormErrorMessages('date');
+		checkStatus=checkNumberLimit(birthDate,'date');
+		if(checkStatus == 1000){
+			clearFormErrorMessages('date');
+		}else if(checkStatus == 1002){
+			errorDate.innerHTML="Dates must be at MOST 2 DIGITS ONLY.";
+		}else if(checkStatus == 1003){
+			errorDate.innerHTML="Dates must not be GREATER than 31.";
+		}
+		break;
+
+		case 1001:
+		errorDate.innerHTML="Invalid Input. Enter DIGITS ONLY";
 		break;
 	}
 }
@@ -289,21 +316,4 @@ let validateBirthDate = (birthYear) => {
 		yearBirthDateStatus=1009;//Dates <=31
 	}
 	return yearBirthDateStatus;
-}
-
-let isLeapYear = (birthYear) => {
-	if(parseInt(birthYear) % 100 === 0){
-		if(parseInt(birthYear) % 400 === 0){
-			validLeapYear=1000;
-		}else{
-			validLeapYear=1015;
-		}
-	}else{
-		if(parseInt(birthYear) % 4 === 0){
-			validLeapYear=1000;
-		}else{
-			validLeapYear=1015;
-		}
-	}
-	return validLeapYear;
 }
