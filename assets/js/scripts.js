@@ -391,11 +391,42 @@ let validateCheckNameForm = () => {
 	DERIVE AKAN NAMES
 
 *****************************/
-let calculateDayOfWeek = (birthDate, birthMonth, birthYear) => {
-	centuryDigits=Math.floor(birthYear/100);
-	yearDigits=birthYear%100;
-	dayOfWeek=(((centuryDigits/4)-(2*centuryDigits -1)) + (5*yearDigits/4) +((26*(birthMonth +1)/10) + birthDate))%7;
-	return Math.floor(dayOfWeek-1);
+let caculateWeekDay = (birthDate, birthMonth, birthYear) => {
+	if(birthMonth >= 3){
+    birthMonth -= 2;
+  }else{
+    birthMonth += 10;
+  }
+
+  if((birthMonth == 11) || (birthMonth == 12)){
+  	birthYear--;
+  } 
+
+  let centuryDigits = parseInt(birthYear / 100);
+  let yearDigits = birthYear % 100;
+
+  let dayOfWeek = 0;  
+  dayOfWeek += parseInt(birthDate);
+  dayOfWeek += parseInt((13 / 5) * birthMonth - 0.2);
+  dayOfWeek += parseInt(yearDigits);
+  dayOfWeek += parseInt(yearDigits / 4);
+  dayOfWeek += parseInt(centuryDigits / 4);
+  dayOfWeek -= parseInt(2 * centuryDigits);
+  dayOfWeek %= 7;
+
+  if(birthYear >= 1700 && birthYear <= 1751) {
+    dayOfWeek -= 3;
+  }else{
+    if(birthYear <= 1699){
+    	dayOfWeek -= 4;
+    } 
+  }
+
+  if(dayOfWeek < 0){
+  	dayOfWeek += 7;
+  } 
+
+  return dayOfWeek;
 }
 
 let deriveAkanName = (gender,weekDay) => {
@@ -422,7 +453,7 @@ let submitAndDeriveAkanName = () => {
 		birthMonth = parseInt(document.getElementById("month").value);
 		birthDate = parseInt(document.getElementById("date").value);
 		gender=selectedGender();
-		dayOfWeek=calculateDayOfWeek(birthDate,birthMonth,birthYear);
+		dayOfWeek=caculateWeekDay(birthDate,birthMonth,birthYear);
 		akanName=deriveAkanName(gender,dayOfWeek);
 		alert(akanName);
 		break;
