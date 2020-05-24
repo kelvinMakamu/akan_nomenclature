@@ -58,12 +58,12 @@ hr{
 
 ******************************/
 .akan-content-body{
-	padding:2.5% 2.5% 2.5% 2.5%;
+	padding:3% 2% 2% 2%;
 	background-color: #fff !important;
 }
 
 .akan-content-body-left{
-	margin:0% 2% 0% 2%;
+	margin:0% 2% 0% 3%;
 }
 
 .akan-content-body-left,.akan-content-body-right{
@@ -98,7 +98,6 @@ hr{
 	margin-top: -2%;
 	margin-left: 2.5%;
 	margin-bottom: 7.5%;
-	text-decoration: underline;
 }
 
 .akan-content-body form{
