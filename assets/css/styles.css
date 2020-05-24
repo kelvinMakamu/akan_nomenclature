@@ -58,7 +58,7 @@ hr{
 
 ******************************/
 .akan-content-body{
-	padding:5% 5% 5% 5%;
+	padding:3% 3% 3% 3%;
 	background-color: #fff !important;
 }
 
@@ -76,7 +76,7 @@ hr{
 }
 
 .akan-content-body .row{
-	margin-bottom: 5%;
+	margin-bottom: 3%;
 }
 
 .akan-vertical-rule{
@@ -97,4 +97,14 @@ hr{
 
 .akan-content-body form{
 	padding: 2% 5% 2% 5%;
+}
+/***********************
+
+	AKAN-CONTENT-FOOT
+
+******************************/
+.akan-content-foot{
+	color:#fff;
+	padding:2% 2% 2% 2%;
+	background-color: #5a5a5a;
 }
