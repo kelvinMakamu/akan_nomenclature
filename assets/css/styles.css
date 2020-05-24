@@ -1,3 +1,8 @@
+/***********************
+
+	AKAN-COMMON-STYLES
+
+******************************/
 *{
 	margin:0;
 	letter-spacing: 2px;
@@ -5,10 +10,22 @@
 	font-family: 'Roboto', sans-serif;
 }
 
+body{
+	background-color: #ededed !important;
+}
+
 h1,h2,h3,h4,h5,h6,a{
 	text-transform: uppercase;
 }
 
+hr{
+	margin-bottom: 5%;
+}
+/***********************
+
+	AKAN-CONTENT-HEAD
+
+******************************/
 .jumbotron{
 	color:#fff;
 	background-image: url('../../assets/images/backgrounds/hero.jpg');
@@ -34,4 +51,50 @@ h1,h2,h3,h4,h5,h6,a{
 .akan-brief-description p{
 	font-size: 18px;
 	line-height: 30px;
+}
+/***********************
+
+	AKAN-CONTENT-BODY
+
+******************************/
+.akan-content-body{
+	padding:5% 5% 5% 5%;
+	background-color: #fff !important;
+}
+
+.akan-content-body-left{
+	border-right: 3px dashed #cecece;
+}
+
+.akan-names-tabulation{
+	margin-top: 8%;
+}
+
+.akan-content-body h3{
+	font-size:20px;
+	font-weight: 600;
+}
+
+.akan-content-body .row{
+	margin-bottom: 5%;
+}
+
+.akan-vertical-rule{
+	margin: 5% 0% 5% 0%;
+}
+
+.akan-check-name-third-heading{
+	text-align: center;
+}
+
+.akan-check-name-instruction{
+	font-weight: bold;
+	margin-top: -2%;
+	margin-left: 2.5%;
+	margin-bottom: 7.5%;
+	text-decoration: underline;
+}
+
+.akan-content-body form{
+	padding: 2% 5% 2% 5%;
 }

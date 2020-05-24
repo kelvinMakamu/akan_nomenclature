@@ -49,11 +49,123 @@
 	<!-- CONTENT CONTAINER -->
 	<div class="container akan-content-body">
 		<div class="row">
-			<!--AKAN NAMEs TABULATION -->
-			<div class="col-md-6 col-lg-6 col-sm-12">
+			<!--AKAN NAMES TABULATION -->
+			<div class="col-md-6 col-lg-6 col-sm-12 akan-content-body-left">
+				<h3>AKAN NAMES</h3>
+				<hr>
+				<p>The following is a tabulation of Ghanian day names</p>
+				<div class="akan-names-tabulation">
+					<table class="table table-bordered">
+					  <thead>
+					    <tr>
+					      <th>Day of Week</th>
+					      <th>Female</th>
+					      <th>Male</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>Sunday</td>
+					      <td>Akosua</td>
+					      <td>Kwasi</td>
+					    </tr>
+					    <tr>
+					      <td>Monday</td>
+					      <td>Adwoa</td>
+					      <td>Kwadwo</td>
+					    </tr>
+					    <tr>
+					      <td>Tuesday</td>
+					      <td>Abenaa</td>
+					      <td>Kwabwena</td>
+					    </tr>
+					    <tr>
+					      <td>Wednesday</td>
+					      <td>Akua</td>
+					      <td>Kwaku</td>
+					    </tr>
+					    <tr>
+					      <td>Thursay</td>
+					      <td>Yaa</td>
+					      <td>Yaw</td>
+					    </tr>
+					    <tr>
+					      <td>Friday</td>
+					      <td>Afua</td>
+					      <td>Kofi</td>
+					    </tr>
+					    <tr>
+					      <td>Saturday</td>
+					      <td>Ama</td>
+					      <td>Kwame</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
 			</div>
 			<!--CHECK AKAN NAME FORM -->
 			<div class="col-md-6 col-lg-6 col-sm-12">
+				<h3 class="akan-check-name-third-heading">CHECK AKAN NAME</h3>
+				<hr>
+				<form>
+					<div class="row">
+							<p class="akan-check-name-instruction">Please provide your birthdate and gender</p>
+						<div class="col-md-12 col-lg-12 col-sm-12">
+							<p>Enter Your Birthday</p>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-12">
+							<div class="form-group">
+						    <label for="date">Date (DD)</label>
+						    <input type="text" class="form-control" id="date" aria-describedby="dateHelp" placeholder="DD">
+						    <small id="dateHelp" class="form-text text-muted"></small>
+						  </div>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-12">
+							<div class="form-group">
+						    <label for="month">MONTH (MM)</label>
+						    <input type="text" class="form-control" id="month" aria-describedby="monthHelp" placeholder="MM">
+						    <small id="monthHelp" class="form-text text-muted"></small>
+						  </div>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-12">
+							<div class="form-group">
+						    <label for="year">Year (YYYY)</label>
+						    <input type="text" class="form-control" id="year" aria-describedby="yearHelp" placeholder="YYYY">
+						    <small id="yearHelp" class="form-text text-muted"></small>
+						  </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-lg-12 col-sm-12">
+							<p>Select Your Gender</p>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-12">
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="akan-gender" id="akan-gender-female" value="female">
+							  <label class="form-check-label" for="akan-gender-female">FEMALE</label>
+							</div>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-12">
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="akan-gender" id="akan-gender-male" value="male">
+							  <label class="form-check-label" for="akan-gender-male">MALE</label>
+							</div>
+						</div>
+					</div>
+					<div class="row akan-vertical-rule">
+						<div class="col-md-12 col-lg-12 col-sm-12">
+							<hr>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8 col-lg-8 col-sm-12">
+							<button type="button" class="btn btn-success">Check Name</button>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-12">
+							<button type="button" class="btn btn-secondary">Clear Form</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
