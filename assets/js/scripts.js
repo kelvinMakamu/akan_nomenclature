@@ -10,6 +10,7 @@ const maleAkanNames=['Kwasi','Kwadwo','Kwabena','Kwaku','Yaw','Kofi','Kwame'];
 let currentDate= new Date();
 let currentMonth=currentDate.getMonth()+1;
 let currentYear=currentDate.getFullYear();
+
 /*************
 
 	VALIDATIONS
@@ -104,6 +105,12 @@ let clearFormErrorMessages= (errorType) => {
 		case 'year':
 		document.getElementById("yearHelp").innerHTML="";
 		break;
+
+		case 'all':
+		document.getElementById("dateHelp").innerHTML="";
+		document.getElementById("monthHelp").innerHTML="";
+		document.getElementById("yearHelp").innerHTML="";
+		break;
 	}
 }
 
@@ -192,6 +199,41 @@ let validateYear = (birthYear) => {
 		checkStatus=checkNumberLimit(birthYear,'year');
 		if(checkStatus == 1000){
 			clearFormErrorMessages('year');
+			validBirthDate = validateBirthDate(birthYear);
+			switch(validBirthDate){
+				case 1000:
+				clearFormErrorMessages('all');
+				break;
+
+				case 1008:
+				document.getElementById("dateHelp").innerHTML="Dates MUST have at MOST 2 DIGITS";
+				break;
+
+				case 1009:
+				document.getElementById("dateHelp").innerHTML="Dates MUST NOT be greater than 31 days";
+				break;
+
+				case 1010:
+				document.getElementById("monthHelp").innerHTML="Months MUST have at MOST 2 DIGITS";
+				break;
+
+				case 1011:
+				document.getElementById("monthHelp").innerHTML="Months MUST NOT be greater than 12 ALWAYS";
+				break;
+
+				case 1012:
+				document.getElementById("yearHelp").innerHTML="Years MUST have 4 DIGITS";
+				break;
+
+				case 1013:
+				document.getElementById("yearHelp").innerHTML="Year MUST NOT be GREATER THAN "+currentYear;
+				break;
+
+				case 1014:
+				document.getElementById("monthHelp").innerHTML="Invalid Input. February has 28 days since "+
+				birthYear+ " is not a LEAP YEAR";
+				break;
+			}
 		}else if(checkStatus == 1002){
 			yearDate.innerHTML="Year MUST BE 4 DIGITS ONLY.";
 		}else if(checkStatus == 1003){
@@ -203,4 +245,65 @@ let validateYear = (birthYear) => {
 		yearDate.innerHTML="Invalid Input. Enter DIGITS ONLY";
 		break;
 	}
+}
+
+let validateBirthDate = (birthYear) => {
+	let birthMonth = document.getElementById("month").value;
+	let birthDate = document.getElementById("date").value;
+	checkDateStatus=checkNumberLimit(birthDate,'date');
+	if(checkDateStatus === 1000){
+		checkMonthStatus=checkNumberLimit(birthMonth,'month');
+		if(checkMonthStatus === 1000){
+			checkYearStatus=checkNumberLimit(birthYear,'year');
+			if(checkYearStatus === 1000){
+				switch(isLeapYear(birthYear)){
+					case 1000:
+					yearBirthDateStatus=1000;
+					break;
+
+					case 1015:
+					if(parseInt(birthMonth) === 2){
+						if(parseInt(birthDate) > 28){
+							yearBirthDateStatus=1014;//Invalid Input. February has 28 days since not a leap Year
+						}else{
+							yearBirthDateStatus=1000;
+						}
+					}else{
+						yearBirthDateStatus=1000;
+					}	
+					break;
+				}
+			}else if(checkYearStatus === 1002){
+				yearBirthDateStatus=1012;//Years 4 DIGITS ONLY
+			}else{
+				yearBirthDateStatus=1013;//Year <= 2020
+			}
+		}else if(checkMonthStatus === 1002){
+			yearBirthDateStatus=1010;//Months 2 Digits ONlY
+		}else{
+			yearBirthDateStatus=1011;//Months <=12
+		}
+	}else if(checkDateStatus === 1002){
+		yearBirthDateStatus=1008;//Dates 2 digit only
+	}else{
+		yearBirthDateStatus=1009;//Dates <=31
+	}
+	return yearBirthDateStatus;
+}
+
+let isLeapYear = (birthYear) => {
+	if(parseInt(birthYear) % 100 === 0){
+		if(parseInt(birthYear) % 400 === 0){
+			validLeapYear=1000;
+		}else{
+			validLeapYear=1015;
+		}
+	}else{
+		if(parseInt(birthYear) % 4 === 0){
+			validLeapYear=1000;
+		}else{
+			validLeapYear=1015;
+		}
+	}
+	return validLeapYear;
 }
