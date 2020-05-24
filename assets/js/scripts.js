@@ -7,8 +7,9 @@ const thirtyDaysMonth=[4,6,9,11];
 const thirtyOneDaysMonth=[1,3,5,7,8,10,12];
 const femaleAkanNames=['Akosua','Adwoa','Abenaa','Akua','Yaa','Afua','Ama'];
 const maleAkanNames=['Kwasi','Kwadwo','Kwabena','Kwaku','Yaw','Kofi','Kwame'];
-
-
+let currentDate= new Date();
+let currentMonth=currentDate.getMonth()+1;
+let currentYear=currentDate.getFullYear();
 /*************
 
 	VALIDATIONS
@@ -45,11 +46,11 @@ let validateNumber = (number) => {
 }
 
 let checkNumberLimit = (number,checkType) => {
-	numberLength=getNumberLength(number);
+	numberLength=parseInt(getNumberLength(number));
 	switch(checkType){
 		case 'date':
 		if(numberLength > 0 && numberLength <=2){
-			if(number > 0 && number <=31){
+			if(parseInt(number) > 0 && parseInt(number) <=31){
 				checkStatus=1000;
 			}else{
 				checkStatus=1003;
@@ -61,7 +62,7 @@ let checkNumberLimit = (number,checkType) => {
 
 		case 'month':
 		if(numberLength > 0 && numberLength <=2){
-			if(number > 0 && number <=12){
+			if(parseInt(number) > 0 && parseInt(number) <=12){
 				checkStatus=1000;
 			}else{
 				checkStatus=1003;
@@ -72,6 +73,15 @@ let checkNumberLimit = (number,checkType) => {
 		break;
 
 		case 'year':
+		if(numberLength == 4){
+			if((parseInt(number) > 0) && (parseInt(number) <=parseInt(currentYear))){
+				checkStatus=1000;
+			}else{
+				checkStatus=1003;
+			}
+		}else{
+			checkStatus=1002;
+		}
 		break;
 	}
 	return checkStatus;
@@ -146,7 +156,7 @@ let validateDateAndMonth = (birthMonth) => {
 		switch(parseInt(birthMonth)){
 			case 2:
 			if(parseInt(birthDate) > 29){
-				dateMonthStatus=1007;//does not have more than 29 days.
+				dateMonthStatus=1007;
 			}else{
 				dateMonthStatus=1000;
 			}
@@ -155,13 +165,13 @@ let validateDateAndMonth = (birthMonth) => {
 			default:
 			if(thirtyDaysMonth.includes(parseInt(birthMonth))){
 				if(parseInt(birthDate) > 30){
-					dateMonthStatus=1005;//does not have more than 30 days.
+					dateMonthStatus=1005;
 				}else{
 					dateMonthStatus=1000;
 				}
 			}else if(thirtyOneDaysMonth.includes(parseInt(birthMonth))){
 				if(parseInt(birthDate) > 31){
-					dateMonthStatus=1006;//does not have more than 31 days.
+					dateMonthStatus=1006;
 				}else{
 					dateMonthStatus=1000;
 				}
@@ -172,4 +182,25 @@ let validateDateAndMonth = (birthMonth) => {
 		dateMonthStatus=1004;
 	}
 	return dateMonthStatus;
+}
+
+let validateYear = (birthYear) => {
+	let yearDate=document.getElementById("yearHelp");
+	switch(validateNumber(birthYear)){
+		case 1000:
+		clearFormErrorMessages('year');
+		checkStatus=checkNumberLimit(birthYear,'year');
+		if(checkStatus == 1000){
+			clearFormErrorMessages('year');
+		}else if(checkStatus == 1002){
+			yearDate.innerHTML="Year MUST BE 4 DIGITS ONLY.";
+		}else if(checkStatus == 1003){
+			yearDate.innerHTML="Year should not be GREATER than "+currentYear+".";
+		}
+		break;
+
+		case 1001:
+		yearDate.innerHTML="Invalid Input. Enter DIGITS ONLY";
+		break;
+	}
 }

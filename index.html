@@ -132,7 +132,8 @@
 						<div class="col-md-4 col-lg-4 col-sm-12">
 							<div class="form-group">
 						    <label for="year">Year (YYYY)</label>
-						    <input type="text" class="form-control" id="year" aria-describedby="yearHelp" placeholder="YYYY">
+						    <input type="text" class="form-control" id="year" aria-describedby="yearHelp" placeholder="YYYY"
+						     onkeyup="validateYear(this.value)">
 						    <small id="yearHelp" class="form-text"></small>
 						  </div>
 						</div>
@@ -164,7 +165,7 @@
 							<button type="button" class="btn btn-success" onclick="alert('Yellow')">Check Name</button>
 						</div>
 						<div class="col-md-4 col-lg-4 col-sm-12">
-							<button type="button" class="btn btn-secondary">Clear Form</button>
+							<button type="button" class="btn btn-secondary" onclick="Yell()">Clear Form</button>
 						</div>
 					</div>
 				</form>
@@ -178,6 +179,7 @@
 			Copyright &copy; 2020. All Rights Reserved.
 		</center>
 	</div>
-	<script type="text/javascript" src="assets/js/scripts.js"></script>
+	<script type="text/javascript" src="assets/js/scripts.js">
+	</script>
 </body>
 </html>
