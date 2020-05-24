@@ -5,10 +5,6 @@
 	font-family: 'Roboto', sans-serif;
 }
 
-body{
-	background-color: #ededed !important;
-}
-
 h1,h2,h3,h4,h5,h6,a{
 	text-transform: uppercase;
 }
@@ -18,9 +14,9 @@ h1,h2,h3,h4,h5,h6,a{
 	background-image: url('../../assets/images/backgrounds/hero.jpg');
 }
 
-.navbar a{
+.navbar a,.navbar-toggler-icon{
 	color:#fff;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 .akan-top-content{
