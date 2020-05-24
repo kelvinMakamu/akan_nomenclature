@@ -317,3 +317,80 @@ let validateBirthDate = (birthYear) => {
 	}
 	return yearBirthDateStatus;
 }
+
+let selectedGender = () => {
+	if(document.getElementById('akan-gender-female').checked){ 
+		document.getElementById("genderHelp").innerHTML="";
+    genderSelected="female";
+  }else if(document.getElementById('akan-gender-male').checked){ 
+		document.getElementById("genderHelp").innerHTML="";
+    genderSelected="male";  
+  }else{
+		document.getElementById("genderHelp").innerHTML="Please select a gender...";
+  	genderSelected="none";
+  } 
+  return genderSelected.toUpperCase();
+}
+
+let validateCheckNameForm = () => {
+	let birthYear = document.getElementById("year").value;
+	clearFormErrorMessages('all');
+	switch(selectedGender()){
+		case 'NONE':
+		document.getElementById("genderHelp").innerHTML="Please select a gender...";
+		isFormValid=1100;
+		break;
+
+		default:
+		switch(validateBirthDate(birthYear)){
+			case 1000:
+				clearFormErrorMessages('all');
+				isFormValid=1000;
+				break;
+
+				case 1008:
+				document.getElementById("dateHelp").innerHTML="Dates MUST have at MOST 2 DIGITS";
+				isFormValid=1008;
+				break;
+
+				case 1009:
+				document.getElementById("dateHelp").innerHTML="Dates MUST NOT be greater than 31 days";
+				isFormValid=1009;
+				break;
+
+				case 1010:
+				document.getElementById("monthHelp").innerHTML="Months MUST have at MOST 2 DIGITS";
+				isFormValid=1010;
+				break;
+
+				case 1011:
+				document.getElementById("monthHelp").innerHTML="Months MUST NOT be greater than 12 ALWAYS";
+				isFormValid=1011;
+				break;
+
+				case 1012:
+				document.getElementById("yearHelp").innerHTML="Years MUST have 4 DIGITS";
+				isFormValid=1012;
+				break;
+
+				case 1013:
+				document.getElementById("yearHelp").innerHTML="Year MUST NOT be GREATER THAN "+currentYear;
+				isFormValid=1013;
+				break;
+
+				case 1014:
+				document.getElementById("monthHelp").innerHTML="Invalid Input. February has 28 days since "+
+				birthYear+ " is not a LEAP YEAR";
+				isFormValid=1014;
+				break;
+		}
+		break;
+	}
+	return isFormValid;
+}
+
+/************************
+
+	DERIVE AKAN NAMES
+
+*****************************/
