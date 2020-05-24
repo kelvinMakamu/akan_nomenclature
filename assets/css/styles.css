@@ -1,0 +1,14 @@
+*{
+	margin:0;
+	letter-spacing: 2px;
+	border-radius: 0% !important;
+	font-family: 'Roboto', sans-serif;
+}
+
+body{
+	background-color: #ededed;
+}
+
+.jumbotron{
+	background-image: url('../../assets/images/backgrounds/hero.jpg');
+}
