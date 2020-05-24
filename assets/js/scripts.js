@@ -320,13 +320,10 @@ let validateBirthDate = (birthYear) => {
 
 let selectedGender = () => {
 	if(document.getElementById('akan-gender-female').checked){ 
-		document.getElementById("genderHelp").innerHTML="";
     genderSelected="female";
   }else if(document.getElementById('akan-gender-male').checked){ 
-		document.getElementById("genderHelp").innerHTML="";
     genderSelected="male";  
   }else{
-		document.getElementById("genderHelp").innerHTML="Please select a gender...";
   	genderSelected="none";
   } 
   return genderSelected.toUpperCase();
@@ -394,3 +391,40 @@ let validateCheckNameForm = () => {
 	DERIVE AKAN NAMES
 
 *****************************/
+let calculateDayOfWeek = (birthDate, birthMonth, birthYear) => {
+	centuryDigits=Math.floor(birthYear/100);
+	yearDigits=birthYear%100;
+	dayOfWeek=(((centuryDigits/4)-(2*centuryDigits -1)) + (5*yearDigits/4) +((26*(birthMonth +1)/10) + birthDate))%7;
+	return Math.floor(dayOfWeek-1);
+}
+
+let deriveAkanName = (gender,weekDay) => {
+	switch(gender){
+		case 'MALE':
+		akanName=maleAkanNames[weekDay];
+		break;
+
+		case 'FEMALE':
+		akanName=femaleAkanNames[weekDay];
+		break;
+
+		case 'NONE':
+		akanName=1111;
+		break;
+	}
+	return akanName;
+}
+
+let submitAndDeriveAkanName = () => {
+	switch(validateCheckNameForm()){
+		case 1000:
+		birthYear = parseInt(document.getElementById("year").value);
+		birthMonth = parseInt(document.getElementById("month").value);
+		birthDate = parseInt(document.getElementById("date").value);
+		gender=selectedGender();
+		dayOfWeek=calculateDayOfWeek(birthDate,birthMonth,birthYear);
+		akanName=deriveAkanName(gender,dayOfWeek);
+		alert(akanName);
+		break;
+	}
+}
