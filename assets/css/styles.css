@@ -9,6 +9,32 @@ body{
 	background-color: #ededed;
 }
 
+h1,h2,h3,h4,h5,h6,a{
+	text-transform: uppercase;
+}
+
 .jumbotron{
+	color:#fff;
 	background-image: url('../../assets/images/backgrounds/hero.jpg');
+}
+
+.akan-navigation{
+	margin-left: 7.5%;
+}
+
+.akan-top-content{
+	margin:15% 0% 2.5% 0%;
+}
+
+.akan-brand-name{
+	font-size:25px;
+}
+
+.akan-brief-description{
+	padding:2% 30% 0% 30%;
+}
+
+.akan-brief-description p{
+	font-size: 18px;
+	line-height: 30px;
 }
