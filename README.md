@@ -2,9 +2,16 @@
 ## Brief Description
 Akan names are derived from Ghanian culture. Frequently in Ghana, children are given their first name as a 'day name' which corresponds to the day in the week they were born. 
 This application derives a user's Akan Name depending on the user's date of birth and gender. The application calculates the day of the week an individual was born from the date of birth, and then derives an Akan name depending on the day of week and gender as shown below:
+
 DAY OF WEEK | FEMALE   | MALE
 ------------| ---------| -------
 SUNDAY      | Akosua   | Kwasi
+MONDAY      | Adwoa    | Kwadwo
+TUESDAY     | Abenaa   | Kwabena
+WEDNESDAY   | Akua     | Kwaku
+THURSDAY    | Yaa      | Yaw
+FRIDAY      | Afua     | Kofi
+SATURDAY    | Ama      | Kwame
 
 ## Authors
 * [kelvinMakamu](https://github.com/kelvinMakamu)
@@ -23,7 +30,7 @@ To start using this project:
 * GIT
 ## Live Website
 * [AKAN NOMENCLATURE](https://kelvinmakamu.github.io/akan_nomenclature/)
-## License And Copyright Information
+## License And Copyright Info
 MIT License
 
 Copyright (c) 2020 Makamu Akan-Names
