@@ -30,7 +30,7 @@ To start using this project:
 * JS
 * GIT
 ## Live Website
-* [AKAN NOMENCLATURE](https://kelvinmakamu.github.io/akan_nomenclature/)
+* [Akan-Names](https://kelvinmakamu.github.io/akan_nomenclature/)
 ## License And Copyright Info
 MIT License
 
