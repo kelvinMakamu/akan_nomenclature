@@ -6,6 +6,7 @@
 const monthNames=['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
 const thirtyDaysMonth=[4,6,9,11];
 const thirtyOneDaysMonth=[1,3,5,7,8,10,12];
+const weekDays =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const femaleAkanNames=['Akosua','Adwoa','Abenaa','Akua','Yaa','Afua','Ama'];
 const maleAkanNames=['Kwasi','Kwadwo','Kwabena','Kwaku','Yaw','Kofi','Kwame'];
 const notificationPanel='akan-message-panel';
@@ -154,6 +155,10 @@ let clearNotificationPanel = () => {
 let getMonthName = (monthNumber) => {
 	return monthNames[parseInt(monthNumber-1)];
 }
+
+let getDayOfWeek = (dayNumber) => {
+	return weekDays[parseInt(dayNumber)];
+}
 /*************
 
 	VALIDATIONS
@@ -191,59 +196,82 @@ let validateMonth = (birthMonth) => {
 			switch(dateMonthStatus){
 				case 1000:
 				clearFormErrorMessages('month');
+				monthStatus=1000;
 				break;	
 
 				case 1004:
-				errorMonth.innerHTML="Dates must be at MOST 2 DIGITS ONLY.";
+				errorMonth.innerHTML="Dates must be at MOST 2 DIGITS.";
+				monthStatus=1004;
 				break;
 
 				case 1005:
 				errorMonth.innerHTML="The Month has at MOST 30 DAYS.";
+				monthStatus=1005;
 				break;
 
 				case 1006:
 				errorMonth.innerHTML="The Month has at MOST 31 DAYS.";
+				monthStatus=1006;
 				break;
 
 				case 1007:
 				errorMonth.innerHTML="The Month has at MOST 29 DAYS.";
+				monthStatus=1007;
+				break;
+
+				case 1017:
+				errorMonth.innerHTML="The Month has at MOST 28 DAYS.";
+				monthStatus=1017;
 				break;
 			}
 		}else if(checkStatus == 1002){
-			errorMonth.innerHTML="Months must be at MOST 2 DIGITS ONLY.";
+			errorMonth.innerHTML="Months must be at MOST 2 DIGITS.";
+			monthStatus=1002;
 		}else if(checkStatus == 1003){
 			errorMonth.innerHTML="Months must not be GREATER than 12.";
+			monthStatus=1003;
 		}
 		break;
 
 		case 1001:
 		errorMonth.innerHTML="Enter DIGITS ONLY";
+		monthStatus=1001;
 		break;
 	}
+	return monthStatus;
 }
 
 let validateDateAndMonth = (birthMonth) => {
-	let birthDate=document.getElementById("date").value;
+	let birthDate=parseInt(document.getElementById("date").value);
+	let birthYear=parseInt(document.getElementById("year").value);
 	checkStatus=checkNumberLimit(birthDate,'date');
 	if(checkStatus == 1000){
 		switch(parseInt(birthMonth)){
 			case 2:
-			if(parseInt(birthDate) > 29){
-				dateMonthStatus=1007;
+			if(isLeapYear(birthYear) === 1000){
+				if(birthDate > 29){
+					dateMonthStatus=1007;
+				}else{
+					dateMonthStatus=1000;
+				}
 			}else{
-				dateMonthStatus=1000;
+				if(birthDate > 28){
+					dateMonthStatus=1017;
+				}else{
+					dateMonthStatus=1000;
+				}
 			}
 			break;
 
 			default:
 			if(thirtyDaysMonth.includes(parseInt(birthMonth))){
-				if(parseInt(birthDate) > 30){
+				if(birthDate > 30){
 					dateMonthStatus=1005;
 				}else{
 					dateMonthStatus=1000;
 				}
 			}else if(thirtyOneDaysMonth.includes(parseInt(birthMonth))){
-				if(parseInt(birthDate) > 31){
+				if(birthDate > 31){
 					dateMonthStatus=1006;
 				}else{
 					dateMonthStatus=1000;
@@ -300,7 +328,7 @@ let validateYear = (birthYear) => {
 				birthYear+ " is not a LEAP YEAR";
 				break;
 
-				case 1015:
+				case 1016:
 				document.getElementById("monthHelp").innerHTML="Feb(02) has 29 days since "+
 				birthYear+ " is a LEAP YEAR";
 				break;
@@ -319,43 +347,49 @@ let validateYear = (birthYear) => {
 }
 
 let validateBirthDate = (birthYear) => {
-	let birthMonth = document.getElementById("month").value;
-	let birthDate = document.getElementById("date").value;
+	let birthMonth = parseInt(document.getElementById("month").value);
+	let birthDate = parseInt(document.getElementById("date").value);
 	checkDateStatus=checkNumberLimit(birthDate,'date');
 	if(checkDateStatus === 1000){
 		checkMonthStatus=checkNumberLimit(birthMonth,'month');
 		if(checkMonthStatus === 1000){
-			checkYearStatus=checkNumberLimit(birthYear,'year');
-			if(checkYearStatus === 1000){
-				switch(isLeapYear(birthYear)){
-					case 1000:
-					if(parseInt(birthMonth) === 2){
-						if(parseInt(birthDate) > 29){
-							yearBirthDateStatus=1015;//Feb(02) has 29 days since not a leap Year
+			//Validate Month
+			validMonthStatus=validateMonth(birthMonth);
+			if(validMonthStatus === 1000){
+				checkYearStatus=checkNumberLimit(birthYear,'year');
+				if(checkYearStatus === 1000){
+					switch(isLeapYear(birthYear)){
+						case 1000:
+						if(birthMonth === 2){
+							if(birthDate > 29){
+								yearBirthDateStatus=1016;//Feb(02) has 29 days since not a leap Year
+							}else{
+								yearBirthDateStatus=1000;
+							}
 						}else{
 							yearBirthDateStatus=1000;
-						}
-					}else{
-						yearBirthDateStatus=1000;
-					}	
-					break;
+						}	
+						break;
 
-					case 1015:
-					if(parseInt(birthMonth) === 2){
-						if(parseInt(birthDate) > 28){
-							yearBirthDateStatus=1014;//Feb(02) has 28 days since not a leap Year
+						case 1015:
+						if(birthMonth === 2){
+							if(birthDate > 28){
+								yearBirthDateStatus=1014;//Feb(02) has 28 days since not a leap Year
+							}else{
+								yearBirthDateStatus=1000;
+							}
 						}else{
 							yearBirthDateStatus=1000;
-						}
-					}else{
-						yearBirthDateStatus=1000;
-					}	
-					break;
+						}	
+						break;
+					}
+				}else if(checkYearStatus === 1002){
+					yearBirthDateStatus=1012;//Years 4 DIGITS ONLY
+				}else{
+					yearBirthDateStatus=1013;//Year <= 2020
 				}
-			}else if(checkYearStatus === 1002){
-				yearBirthDateStatus=1012;//Years 4 DIGITS ONLY
 			}else{
-				yearBirthDateStatus=1013;//Year <= 2020
+				yearBirthDateStatus=validMonthStatus;
 			}
 		}else if(checkMonthStatus === 1002){
 			yearBirthDateStatus=1010;//Months 2 Digits ONlY
@@ -392,9 +426,44 @@ let validateCheckNameForm = () => {
 
 		default:
 		switch(validateBirthDate(birthYear)){
-			case 1000:
+				case 1000:
 				clearFormErrorMessages('all');
 				isFormValid=1000;
+				break;
+
+				case 1001:
+				document.getElementById("monthHelp").innerHTML="Enter DIGITS ONLY.";
+				isFormValid=1001;
+				break;
+
+				case 1002:
+				document.getElementById("monthHelp").innerHTML="Months MUST have at MOST 2 DIGITS";
+				isFormValid=1002;
+				break;
+
+				case 1003:
+				document.getElementById("monthHelp").innerHTML="Months MUST NOT be GREATER THAN 12";
+				isFormValid=1003;
+				break;
+
+				case 1004:
+				document.getElementById("dateHelp").innerHTML="Dates MUST have at MOST 2 DIGITS";
+				isFormValid=1004;
+				break;
+
+				case 1005:
+				document.getElementById("monthHelp").innerHTML="The month has at MOST 30 DAYS";
+				isFormValid=1005;
+				break;
+
+				case 1006:
+				document.getElementById("monthHelp").innerHTML="The month has at MOST 31 DAYS";
+				isFormValid=1006;
+				break;
+
+				case 1007:
+				document.getElementById("monthHelp").innerHTML="The month has at MOST 29 DAYS";
+				isFormValid=1007;
 				break;
 
 				case 1008:
@@ -431,6 +500,18 @@ let validateCheckNameForm = () => {
 				document.getElementById("monthHelp").innerHTML="Feb(02) has 28 days since "+
 				birthYear+ " is not a LEAP YEAR";
 				isFormValid=1014;
+				break;
+
+				case 1016:
+				document.getElementById("monthHelp").innerHTML="Feb(02) has 29 days since "+
+				birthYear+ " is a LEAP YEAR";
+				isFormValid=1016;
+				break;
+
+				case 1017:
+				document.getElementById("monthHelp").innerHTML="Feb(02) has 28 days since "+
+				birthYear+ " is a NOT LEAP YEAR";
+				isFormValid=1017;
 				break;
 		}
 		break;
@@ -513,10 +594,45 @@ let submitAndDeriveAkanName = () => {
 			message="<p>Failed to derive akan name. Please select your gender...</p>";
 		}else{
 			alert='alert-success';
-			message="<p>Birth Date: "+birthDate+"-"+getMonthName(birthMonth)+"-"+birthYear+"<br/> Gender: "+gender
-			+"<br/>Your Akan Name is : <strong>"+akanName +"</strong></p>";
+			message="<p>Gender: "+gender+"<br/>Birth Date: "+birthDate+"-"+getMonthName(birthMonth)+"-"+birthYear
+			+"<br/>Birth Day: "+getDayOfWeek(dayOfWeek)+"<br/>Your Akan Name is : <strong>"+akanName +"</strong></p>";
 			clearCheckNameFormAfterSubmission();
 		}
+		break;
+
+		case 1001:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Enter DIGITS ONLY.</p>";
+		break;
+
+		case 1002:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Months MUST have at MOST 2 DIGITS.</p>";
+		break;
+
+		case 1003:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Months MUST NOT be GREATER THAN 12.</p>";
+		break;
+
+		case 1004:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Dates MUST have at MOST 2 DIGITS.</p>";
+		break;
+
+		case 1005:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. The month has at MOST 30 DAYS.</p>";
+		break;
+
+		case 1006:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. The month has at MOST 31 DAYS.</p>";
+		break;
+
+		case 1007:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. The month has at MOST 29 DAYS.</p>";
 		break;
 
 		case 1008:
@@ -554,9 +670,14 @@ let submitAndDeriveAkanName = () => {
 		message="<p>Failed to derive akan name. Feb(02) has 28 days since  "+birthYear+" is not a leap year</p>";
 		break;
 
-		case 1015:
+		case 1016:
 		alert='alert-danger';
 		message="<p>Failed to derive akan name. Feb(02) has 29 days since  "+birthYear+" is a leap year</p>";
+		break;
+
+		case 1017:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Feb(02) has 28 days since  "+birthYear+" is not a leap year</p>";
 		break;
 
 		case 1100:
