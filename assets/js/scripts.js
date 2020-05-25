@@ -7,8 +7,8 @@ const thirtyDaysMonth=[4,6,9,11];
 const thirtyOneDaysMonth=[1,3,5,7,8,10,12];
 const femaleAkanNames=['Akosua','Adwoa','Abenaa','Akua','Yaa','Afua','Ama'];
 const maleAkanNames=['Kwasi','Kwadwo','Kwabena','Kwaku','Yaw','Kofi','Kwame'];
-const weekDays =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const monthNames=['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
+const weekDays =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const notificationPanel='akan-message-panel';
 const numbersPattern = /^[0-9]+$/;
 
@@ -632,8 +632,8 @@ let submitAndDeriveAkanName = () => {
 		gender=selectedGender();
 		switch(validateCheckNameForm()){
 			case 1000:
-			dayOfWeek=caculateWeekDay(birthDate,birthMonth,birthYear);
-			akanName=deriveAkanName(gender,dayOfWeek);
+			dayOfWeek=caculateWeekDay(parseInt(birthDate),parseInt(birthMonth),parseInt(birthYear));
+			akanName=deriveAkanName(gender,parseInt(dayOfWeek));
 			if(akanName == 1111){
 				alert='alert-danger';
 				message="<p>Failed to derive akan name. Please select your gender...</p>";
