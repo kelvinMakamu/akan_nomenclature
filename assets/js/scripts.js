@@ -21,11 +21,11 @@ let currentDate= new Date();
 let currentMonth=currentDate.getMonth()+1;
 let currentYear=currentDate.getFullYear();
 
-/*****************
+/***********************
 
 	UTILITY FUNCTIONS
 
-*********************/
+***************************/
 let getNumberLength = (number) => {
 	return number.toString().length;
 }
@@ -347,12 +347,12 @@ let validateYear = (birthYear) => {
 				break;
 
 				case 1014:
-				document.getElementById("monthHelp").innerHTML="Feb(02) has 28 days since "+
+				document.getElementById("monthHelp").innerHTML="Feb (02) has 28 days since "+
 				birthYear+ " is not a LEAP YEAR";
 				break;
 
 				case 1016:
-				document.getElementById("monthHelp").innerHTML="Feb(02) has 29 days since "+
+				document.getElementById("monthHelp").innerHTML="Feb (02) has 29 days since "+
 				birthYear+ " is a LEAP YEAR";
 				break;
 
@@ -535,19 +535,19 @@ let validateCheckNameForm = () => {
 				break;
 
 				case 1014:
-				document.getElementById("monthHelp").innerHTML="Feb(02) has 28 days since "+
+				document.getElementById("monthHelp").innerHTML="Feb (02) has 28 days since "+
 				birthYear+ " is not a LEAP YEAR";
 				isFormValid=1014;
 				break;
 
 				case 1016:
-				document.getElementById("monthHelp").innerHTML="Feb(02) has 29 days since "+
+				document.getElementById("monthHelp").innerHTML="Feb (02) has 29 days since "+
 				birthYear+ " is a LEAP YEAR";
 				isFormValid=1016;
 				break;
 
 				case 1017:
-				document.getElementById("monthHelp").innerHTML="Feb(02) has 28 days since "+
+				document.getElementById("monthHelp").innerHTML="Feb (02) has 28 days since "+
 				birthYear+ " is a NOT LEAP YEAR";
 				isFormValid=1017;
 				break;
@@ -707,22 +707,26 @@ let submitAndDeriveAkanName = () => {
 
 			case 1013:
 			alert='alert-danger';
-			message="<p>Failed to derive akan name. Year MUST NOT be GREATER THAN "+currentYear+"</p>";
+			message="<p>Failed to derive akan name. Year MUST NOT be GREATER THAN "
+			+currentYear+"</p>";
 			break;
 
 			case 1014:
 			alert='alert-danger';
-			message="<p>Failed to derive akan name. Feb(02) has 28 days since  "+birthYear+" is not a leap year</p>";
+			message="<p>Failed to derive akan name. Feb (02) has 28 days since  "
+			+birthYear+" is not a leap year</p>";
 			break;
 
 			case 1016:
 			alert='alert-danger';
-			message="<p>Failed to derive akan name. Feb(02) has 29 days since  "+birthYear+" is a leap year</p>";
+			message="<p>Failed to derive akan name. Feb (02) has 29 days since  "
+			+birthYear+" is a leap year</p>";
 			break;
 
 			case 1017:
 			alert='alert-danger';
-			message="<p>Failed to derive akan name. Feb(02) has 28 days since  "+birthYear+" is not a leap year</p>";
+			message="<p>Failed to derive akan name. Feb (02) has 28 days since  "
+			+birthYear+" is not a leap year</p>";
 			break;
 
 			case 1018:
