@@ -159,7 +159,7 @@ let validateDate = (birthDate) => {
 		break;
 
 		case 1001:
-		errorDate.innerHTML="Invalid Input. Enter DIGITS ONLY";
+		errorDate.innerHTML="Enter DIGITS ONLY";
 		break;
 	}
 }
@@ -201,7 +201,7 @@ let validateMonth = (birthMonth) => {
 		break;
 
 		case 1001:
-		errorMonth.innerHTML="Invalid Input. Enter DIGITS ONLY";
+		errorMonth.innerHTML="Enter DIGITS ONLY";
 		break;
 	}
 }
@@ -280,12 +280,12 @@ let validateYear = (birthYear) => {
 				break;
 
 				case 1014:
-				document.getElementById("monthHelp").innerHTML="Invalid Input. February has 28 days since "+
+				document.getElementById("monthHelp").innerHTML="Feb(02) has 28 days since "+
 				birthYear+ " is not a LEAP YEAR";
 				break;
 
 				case 1015:
-				document.getElementById("monthHelp").innerHTML="Invalid Input. February has 29 days since "+
+				document.getElementById("monthHelp").innerHTML="Feb(02) has 29 days since "+
 				birthYear+ " is a LEAP YEAR";
 				break;
 			}
@@ -297,7 +297,7 @@ let validateYear = (birthYear) => {
 		break;
 
 		case 1001:
-		yearDate.innerHTML="Invalid Input. Enter DIGITS ONLY";
+		yearDate.innerHTML="Enter DIGITS ONLY";
 		break;
 	}
 }
@@ -315,20 +315,19 @@ let validateBirthDate = (birthYear) => {
 					case 1000:
 					if(parseInt(birthMonth) === 2){
 						if(parseInt(birthDate) > 29){
-							yearBirthDateStatus=1015;//Invalid Input. February has 29 days since not a leap Year
+							yearBirthDateStatus=1015;//Feb(02) has 29 days since not a leap Year
 						}else{
 							yearBirthDateStatus=1000;
 						}
 					}else{
 						yearBirthDateStatus=1000;
 					}	
-					yearBirthDateStatus=1000;
 					break;
 
 					case 1015:
 					if(parseInt(birthMonth) === 2){
 						if(parseInt(birthDate) > 28){
-							yearBirthDateStatus=1014;//Invalid Input. February has 28 days since not a leap Year
+							yearBirthDateStatus=1014;//Feb(02) has 28 days since not a leap Year
 						}else{
 							yearBirthDateStatus=1000;
 						}
@@ -413,7 +412,7 @@ let validateCheckNameForm = () => {
 				break;
 
 				case 1014:
-				document.getElementById("monthHelp").innerHTML="Invalid Input. February has 28 days since "+
+				document.getElementById("monthHelp").innerHTML="Feb(02) has 28 days since "+
 				birthYear+ " is not a LEAP YEAR";
 				isFormValid=1014;
 				break;
@@ -485,12 +484,12 @@ let deriveAkanName = (gender,weekDay) => {
 
 let submitAndDeriveAkanName = () => {
 	clearNotificationPanel();
+	birthYear = parseInt(document.getElementById("year").value);
+	birthMonth = parseInt(document.getElementById("month").value);
+	birthDate = parseInt(document.getElementById("date").value);
+	gender=selectedGender();
 	switch(validateCheckNameForm()){
 		case 1000:
-		birthYear = parseInt(document.getElementById("year").value);
-		birthMonth = parseInt(document.getElementById("month").value);
-		birthDate = parseInt(document.getElementById("date").value);
-		gender=selectedGender();
 		dayOfWeek=caculateWeekDay(birthDate,birthMonth,birthYear);
 		akanName=deriveAkanName(gender,dayOfWeek);
 		if(akanName == 1111){
@@ -534,12 +533,12 @@ let submitAndDeriveAkanName = () => {
 
 		case 1014:
 		alert='alert-danger';
-		message="<p>Failed to derive akan name. February has 28 days since  "+birthYear+" is not a leap year</p>";
+		message="<p>Failed to derive akan name. Feb(02) has 28 days since  "+birthYear+" is not a leap year</p>";
 		break;
 
 		case 1015:
 		alert='alert-danger';
-		message="<p>Failed to derive akan name. February has 29 days since  "+birthYear+" is a leap year</p>";
+		message="<p>Failed to derive akan name. Feb(02) has 29 days since  "+birthYear+" is a leap year</p>";
 		break;
 
 		case 1100:
