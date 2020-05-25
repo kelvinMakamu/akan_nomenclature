@@ -130,7 +130,7 @@ thead tr th{
 }
 
 .akan-vertical-rule{
-	margin: 5% 0% 5% 0%;
+	margin-bottom: 5% !important;
 }
 
 .akan-check-name-third-heading{
