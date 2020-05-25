@@ -3,14 +3,20 @@
 	CONSTANTS
 
 *******************/
-const monthNames=['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
 const thirtyDaysMonth=[4,6,9,11];
 const thirtyOneDaysMonth=[1,3,5,7,8,10,12];
-const weekDays =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const femaleAkanNames=['Akosua','Adwoa','Abenaa','Akua','Yaa','Afua','Ama'];
 const maleAkanNames=['Kwasi','Kwadwo','Kwabena','Kwaku','Yaw','Kofi','Kwame'];
+const weekDays =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const monthNames=['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
 const notificationPanel='akan-message-panel';
-const pattern = /^[0-9]+$/;
+const numbersPattern = /^[0-9]+$/;
+
+/**************************
+	
+	VARIABLES
+
+****************************/
 let currentDate= new Date();
 let currentMonth=currentDate.getMonth()+1;
 let currentYear=currentDate.getFullYear();
@@ -20,8 +26,85 @@ let currentYear=currentDate.getFullYear();
 	UTILITY FUNCTIONS
 
 *********************/
+let getNumberLength = (number) => {
+	return number.toString().length;
+}
+
+let getMonthName = (monthNumber) => {
+	return monthNames[parseInt(monthNumber-1)];
+}
+
+let getDayOfWeek = (dayNumber) => {
+	return weekDays[parseInt(dayNumber)];
+}
+
+let displayNotification = (notificationPanel,alert,message) => {
+	let notification ="<div class='alert "+alert+"' role='alert'>"+message+"</div>";
+	document.getElementById(notificationPanel).innerHTML+=notification;
+}
+
+let clearNotificationPanel = () => {
+	document.getElementById('akan-message-panel').innerHTML="";
+}
+
+let displayFooterContent = (containerClass) =>{
+	let content="<center><span>akan nomenclature</span><br/><br/>"+
+	"Copyright &copy; "+currentYear+". All Rights Reserved.</center>";
+	document.getElementById(containerClass).innerHTML+=content;
+}
+
+let clearFormErrorMessages= (errorType) => {
+	switch(errorType){
+		case 'date':
+		document.getElementById("dateHelp").innerHTML="";
+		break;
+
+		case 'month':
+		document.getElementById("monthHelp").innerHTML="";
+		break;
+
+		case 'year':
+		document.getElementById("yearHelp").innerHTML="";
+		break;
+
+		case 'all':
+		document.getElementById("dateHelp").innerHTML="";
+		document.getElementById("monthHelp").innerHTML="";
+		document.getElementById("yearHelp").innerHTML="";
+		document.getElementById("genderHelp").innerHTML="";
+		break;
+	}
+}
+
+let clearCheckNameFormAfterSubmission = () => {
+	clearFormErrorMessages("all");
+	document.getElementById('date').value = "";
+	document.getElementById('month').value = "";
+	document.getElementById('year').value = "";
+	let genderChoices = document.getElementsByName("akan-gender");
+  for(let counter=0;counter<genderChoices.length;counter++){
+    genderChoices[counter].checked = false;
+  }
+}
+
+let clearCheckNameForm = () => {
+	clearNotificationPanel();
+	clearFormErrorMessages("all");
+	document.getElementById('date').value = "";
+	document.getElementById('month').value = "";
+	document.getElementById('year').value = "";
+	let genderChoices = document.getElementsByName("akan-gender");
+  for(let counter=0;counter<genderChoices.length;counter++){
+    genderChoices[counter].checked = false;
+  }
+}
+/***********************
+
+	INPUT VALIDATIONS
+
+************************/
 let validateNumber = (number) => {
-	if(pattern.test(number)){
+	if(numbersPattern.test(number)){
 		validStatus=1000;
 	}else{
 		validStatus=1001;
@@ -75,33 +158,6 @@ let checkNumberLimit = (number,checkType) => {
 	return checkStatus;
 }
 
-let getNumberLength = (number) => {
-	return number.toString().length;
-}
-
-let clearFormErrorMessages= (errorType) => {
-	switch(errorType){
-		case 'date':
-		document.getElementById("dateHelp").innerHTML="";
-		break;
-
-		case 'month':
-		document.getElementById("monthHelp").innerHTML="";
-		break;
-
-		case 'year':
-		document.getElementById("yearHelp").innerHTML="";
-		break;
-
-		case 'all':
-		document.getElementById("dateHelp").innerHTML="";
-		document.getElementById("monthHelp").innerHTML="";
-		document.getElementById("yearHelp").innerHTML="";
-		document.getElementById("genderHelp").innerHTML="";
-		break;
-	}
-}
-
 let isLeapYear = (birthYear) => {
 	if(parseInt(birthYear) % 100 === 0){
 		if(parseInt(birthYear) % 400 === 0){
@@ -119,56 +175,6 @@ let isLeapYear = (birthYear) => {
 	return validLeapYear;
 }
 
-let displayFooterContent = (containerClass) =>{
-	let content="<center><span>akan nomenclature</span><br/><br/>"+
-	"Copyright &copy; "+currentYear+". All Rights Reserved.</center>";
-	document.getElementById(containerClass).innerHTML+=content;
-}
-
-let clearCheckNameFormAfterSubmission = () => {
-	clearFormErrorMessages("all");
-	document.getElementById('date').value = "";
-	document.getElementById('month').value = "";
-	document.getElementById('year').value = "";
-	let genderChoices = document.getElementsByName("akan-gender");
-  for(let counter=0;counter<genderChoices.length;counter++){
-    genderChoices[counter].checked = false;
-  }
-}
-
-let clearCheckNameForm = () => {
-	clearNotificationPanel();
-	clearFormErrorMessages("all");
-	document.getElementById('date').value = "";
-	document.getElementById('month').value = "";
-	document.getElementById('year').value = "";
-	let genderChoices = document.getElementsByName("akan-gender");
-  for(let counter=0;counter<genderChoices.length;counter++){
-    genderChoices[counter].checked = false;
-  }
-}
-
-let displayNotification = (notificationPanel,alert,message) => {
-	let notification ="<div class='alert "+alert+"' role='alert'>"+message+"</div>";
-	document.getElementById(notificationPanel).innerHTML+=notification;
-}
-
-let clearNotificationPanel = () => {
-	document.getElementById('akan-message-panel').innerHTML="";
-}
-
-let getMonthName = (monthNumber) => {
-	return monthNames[parseInt(monthNumber-1)];
-}
-
-let getDayOfWeek = (dayNumber) => {
-	return weekDays[parseInt(dayNumber)];
-}
-/*************
-
-	VALIDATIONS
-
-*******************/
 let validateDate = (birthDate) => {
 	let errorDate=document.getElementById("dateHelp");
 	switch(validateNumber(birthDate)){
@@ -380,7 +386,6 @@ let validateBirthDate = (birthYear) => {
 	if(checkDateStatus === 1000){
 		checkMonthStatus=checkNumberLimit(birthMonth,'month');
 		if(checkMonthStatus === 1000){
-			//Validate Month
 			validMonthStatus=validateMonth(birthMonth);
 			if(validMonthStatus === 1000){
 				checkYearStatus=checkNumberLimit(birthYear,'year');
@@ -389,7 +394,7 @@ let validateBirthDate = (birthYear) => {
 						case 1000:
 						if(birthMonth === 2){
 							if(birthDate > 29){
-								yearBirthDateStatus=1016;//Feb(02) has 29 days since not a leap Year
+								yearBirthDateStatus=1016;
 							}else{
 								yearBirthDateStatus=1000;
 							}
@@ -401,7 +406,7 @@ let validateBirthDate = (birthYear) => {
 						case 1015:
 						if(birthMonth === 2){
 							if(birthDate > 28){
-								yearBirthDateStatus=1014;//Feb(02) has 28 days since not a leap Year
+								yearBirthDateStatus=1014;
 							}else{
 								yearBirthDateStatus=1000;
 							}
@@ -411,28 +416,28 @@ let validateBirthDate = (birthYear) => {
 						break;
 					}
 				}else if(checkYearStatus === 1018){
-					yearBirthDateStatus=1018;//DIGITS ONLY
+					yearBirthDateStatus=1018;
 				}else if(checkYearStatus === 1002){
-					yearBirthDateStatus=1012;//Years 4 DIGITS ONLY
+					yearBirthDateStatus=1012;
 				}else{
-					yearBirthDateStatus=1013;//Year <= 2020
+					yearBirthDateStatus=1013;
 				}
 			}else{
 				yearBirthDateStatus=validMonthStatus;
 			}
 		}else if(checkMonthStatus === 1002){
-			yearBirthDateStatus=1010;//Months 2 Digits ONlY
+			yearBirthDateStatus=1010;
 		}else if(checkMonthStatus === 1018){
-			yearBirthDateStatus=1018;//Digits ONlY
+			yearBirthDateStatus=1018;
 		}else{
-			yearBirthDateStatus=1011;//Months <=12
+			yearBirthDateStatus=1011;
 		}
 	}else if(checkDateStatus === 1002){
-		yearBirthDateStatus=1008;//Dates 2 digit only
+		yearBirthDateStatus=1008;
 	}else if(checkDateStatus === 1018){
-		yearBirthDateStatus=1018//Digits ONlY
+		yearBirthDateStatus=1018;
 	}else{
-		yearBirthDateStatus=1009;//Dates <=31
+		yearBirthDateStatus=1009;
 	}
 	return yearBirthDateStatus;
 }
