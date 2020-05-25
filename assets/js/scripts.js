@@ -10,7 +10,7 @@ const weekDays =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Sa
 const femaleAkanNames=['Akosua','Adwoa','Abenaa','Akua','Yaa','Afua','Ama'];
 const maleAkanNames=['Kwasi','Kwadwo','Kwabena','Kwaku','Yaw','Kofi','Kwame'];
 const notificationPanel='akan-message-panel';
-const pattern = /^-?\d+\.?\d*$/;
+const pattern = /^[0-9]+$/;
 let currentDate= new Date();
 let currentMonth=currentDate.getMonth()+1;
 let currentYear=currentDate.getFullYear();
@@ -257,8 +257,8 @@ let validateMonth = (birthMonth) => {
 }
 
 let validateDateAndMonth = (birthMonth) => {
-	let birthDate=parseInt(document.getElementById("date").value);
-	let birthYear=parseInt(document.getElementById("year").value);
+	let birthDate=document.getElementById("date").value;
+	let birthYear=document.getElementById("year").value;
 	checkStatus=checkNumberLimit(birthDate,'date');
 	if(checkStatus == 1000){
 		switch(parseInt(birthMonth)){
@@ -374,8 +374,8 @@ let validateYear = (birthYear) => {
 }
 
 let validateBirthDate = (birthYear) => {
-	let birthMonth = parseInt(document.getElementById("month").value);
-	let birthDate = parseInt(document.getElementById("date").value);
+	let birthMonth = document.getElementById("month").value;
+	let birthDate = document.getElementById("date").value;
 	checkDateStatus=checkNumberLimit(birthDate,'date');
 	if(checkDateStatus === 1000){
 		checkMonthStatus=checkNumberLimit(birthMonth,'month');
@@ -619,10 +619,11 @@ let deriveAkanName = (gender,weekDay) => {
 
 let submitAndDeriveAkanName = () => {
 	clearNotificationPanel();
-	birthYear = parseInt(document.getElementById("year").value);
-	birthMonth = parseInt(document.getElementById("month").value);
-	birthDate = parseInt(document.getElementById("date").value);
-	if(validateNumber(birthYear) === 1000 && validateNumber(birthMonth) === 1000 && validateNumber(birthDate) === 1000){
+	birthYear = document.getElementById("year").value;
+	birthMonth = document.getElementById("month").value;
+	birthDate = document.getElementById("date").value;
+	if((validateNumber(birthYear) === 1000) && (validateNumber(birthMonth) === 1000)
+	 && (validateNumber(birthDate) === 1000)){
 		gender=selectedGender();
 		switch(validateCheckNameForm()){
 			case 1000:
