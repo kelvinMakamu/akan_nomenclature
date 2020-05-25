@@ -28,6 +28,11 @@ hr{
 	margin-bottom: 5%;
 }
 
+thead tr th{
+	color:#45A29E !important;
+	text-transform: uppercase;
+}
+
 .form-control{
 	border:0px !important;
 	border-bottom: 2px solid #dedede !important;
@@ -37,6 +42,10 @@ hr{
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
 	border-bottom: 2px solid #0F9D58 !important;
+}
+
+.btn{
+	text-transform: uppercase;
 }
 
 .btn-success,.btn-success:focus,.btn-success:hover{
@@ -92,6 +101,7 @@ hr{
 
 ******************************/
 .akan-content-body{
+	margin-bottom: 3%;
 	padding:3% 2% 2% 2%;
 	background-color: #fff !important;
 }
@@ -116,7 +126,7 @@ hr{
 }
 
 .akan-content-body .row{
-	margin-bottom: 3%;
+	margin-bottom: 2%;
 }
 
 .akan-vertical-rule{
@@ -154,8 +164,8 @@ hr{
 
 ******************************/
 .akan-content-foot{
-	color:#fff;
+	color:#45A29E;
 	text-transform: uppercase;
-	padding:2% 2% 2% 2%;
+	padding:3% 2% 2% 2%;
 	background-color: #5a5a5a;
 }
