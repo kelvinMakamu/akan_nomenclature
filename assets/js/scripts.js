@@ -48,7 +48,7 @@ let clearNotificationPanel = () => {
 }
 
 let displayFooterContent = (containerClass) =>{
-	let content="<center><span>akan nomenclature</span><br/><br/>"+
+	let content="<center><span class='navbar-brand'>akan-names</span><br/><br/>"+
 	"Copyright &copy; "+currentYear+". All Rights Reserved.</center>";
 	document.getElementById(containerClass).innerHTML+=content;
 }

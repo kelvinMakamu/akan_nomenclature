@@ -74,6 +74,10 @@ thead tr th{
   background-size: cover;
 }
 
+.navbar-brand{
+	font-family: monospace;
+}
+
 .navbar a,.navbar-toggler-icon{
 	color:#45A29E;
 	font-weight: 600;
