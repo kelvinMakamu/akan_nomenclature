@@ -31,6 +31,8 @@ To start using this project:
 * GIT
 ## Live Website
 * [Akan-Names](https://kelvinmakamu.github.io/akan_nomenclature/)
+## Contact Info
+* [Kelvin Makamu](mailto:profmakamu@gmail.com?subject=[GitHub]%20Private%20and%20Confidential)
 ## License And Copyright Info
 MIT License
 
