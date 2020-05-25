@@ -8,8 +8,9 @@ const thirtyDaysMonth=[4,6,9,11];
 const thirtyOneDaysMonth=[1,3,5,7,8,10,12];
 const weekDays =['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const femaleAkanNames=['Akosua','Adwoa','Abenaa','Akua','Yaa','Afua','Ama'];
-const maleAkanNames=['Kwasi','Kwadwo','Kwabena','Kwaku','Yaw','Kofi','Kwame'];
+const maleAkanNames=['Kwasi','Kwadwo','Kwabwena','Kwaku','Yaw','Kofi','Kwame'];
 const notificationPanel='akan-message-panel';
+const pattern = /^-?\d+\.?\d*$/;
 let currentDate= new Date();
 let currentMonth=currentDate.getMonth()+1;
 let currentYear=currentDate.getFullYear();
@@ -20,7 +21,7 @@ let currentYear=currentDate.getFullYear();
 
 *********************/
 let validateNumber = (number) => {
-	if(/^\d+$/.test(number)){
+	if(pattern.test(number)){
 		validStatus=1000;
 	}else{
 		validStatus=1001;
@@ -29,43 +30,47 @@ let validateNumber = (number) => {
 }
 
 let checkNumberLimit = (number,checkType) => {
-	numberLength=parseInt(getNumberLength(number));
-	switch(checkType){
-		case 'date':
-		if(numberLength > 0 && numberLength <=2){
-			if(parseInt(number) > 0 && parseInt(number) <=31){
-				checkStatus=1000;
+	if(validateNumber(number) === 1000){
+		numberLength=parseInt(getNumberLength(number));
+		switch(checkType){
+			case 'date':
+			if(numberLength > 0 && numberLength <=2){
+				if(parseInt(number) > 0 && parseInt(number) <=31){
+					checkStatus=1000;
+				}else{
+					checkStatus=1003;
+				}
 			}else{
-				checkStatus=1003;
+				checkStatus=1002;
 			}
-		}else{
-			checkStatus=1002;
-		}
-		break;
+			break;
 
-		case 'month':
-		if(numberLength > 0 && numberLength <=2){
-			if(parseInt(number) > 0 && parseInt(number) <=12){
-				checkStatus=1000;
+			case 'month':
+			if(numberLength > 0 && numberLength <=2){
+				if(parseInt(number) > 0 && parseInt(number) <=12){
+					checkStatus=1000;
+				}else{
+					checkStatus=1003;
+				}
 			}else{
-				checkStatus=1003;
+				checkStatus=1002;
 			}
-		}else{
-			checkStatus=1002;
-		}
-		break;
+			break;
 
-		case 'year':
-		if(numberLength == 4){
-			if((parseInt(number) > 0) && (parseInt(number) <=parseInt(currentYear))){
-				checkStatus=1000;
+			case 'year':
+			if(numberLength == 4){
+				if((parseInt(number) > 0) && (parseInt(number) <=parseInt(currentYear))){
+					checkStatus=1000;
+				}else{
+					checkStatus=1003;
+				}
 			}else{
-				checkStatus=1003;
+				checkStatus=1002;
 			}
-		}else{
-			checkStatus=1002;
+			break;
 		}
-		break;
+	}else{
+		checkStatus=1018;
 	}
 	return checkStatus;
 }
@@ -174,6 +179,8 @@ let validateDate = (birthDate) => {
 			clearFormErrorMessages('date');
 		}else if(checkStatus == 1002){
 			errorDate.innerHTML="Dates must be at MOST 2 DIGITS ONLY.";
+		}else if(checkStatus == 1018){
+			errorDate.innerHTML="Dates must BE DIGITS ONLY.";
 		}else if(checkStatus == 1003){
 			errorDate.innerHTML="Dates must not be GREATER than 31.";
 		}
@@ -223,10 +230,18 @@ let validateMonth = (birthMonth) => {
 				errorMonth.innerHTML="The Month has at MOST 28 DAYS.";
 				monthStatus=1017;
 				break;
+
+				case 1018:
+				errorMonth.innerHTML="Enter DIGITS ONlY.";
+				monthStatus=1018;
+				break;
 			}
 		}else if(checkStatus == 1002){
 			errorMonth.innerHTML="Months must be at MOST 2 DIGITS.";
 			monthStatus=1002;
+		}else if(checkStatus == 1018){
+			errorMonth.innerHTML="Months must be DIGITS ONLY.";
+			monthStatus=1018;
 		}else if(checkStatus == 1003){
 			errorMonth.innerHTML="Months must not be GREATER than 12.";
 			monthStatus=1003;
@@ -279,6 +294,8 @@ let validateDateAndMonth = (birthMonth) => {
 			}
 			break;
 		}
+	}else if(checkStatus === 1018){
+		dateMonthStatus=1018;
 	}else{
 		dateMonthStatus=1004;
 	}
@@ -332,7 +349,13 @@ let validateYear = (birthYear) => {
 				document.getElementById("monthHelp").innerHTML="Feb(02) has 29 days since "+
 				birthYear+ " is a LEAP YEAR";
 				break;
+
+				case 1018:
+				document.getElementById("monthHelp").innerHTML="ENTER DIGITS ONLY";
+				break;
 			}
+		}else if(checkStatus == 1018){
+			yearDate.innerHTML="Year MUST BE DIGITS ONLY.";
 		}else if(checkStatus == 1002){
 			yearDate.innerHTML="Year MUST BE 4 DIGITS ONLY.";
 		}else if(checkStatus == 1003){
@@ -341,6 +364,10 @@ let validateYear = (birthYear) => {
 		break;
 
 		case 1001:
+		yearDate.innerHTML="Enter DIGITS ONLY";
+		break;
+
+		case 1018:
 		yearDate.innerHTML="Enter DIGITS ONLY";
 		break;
 	}
@@ -383,6 +410,8 @@ let validateBirthDate = (birthYear) => {
 						}	
 						break;
 					}
+				}else if(checkYearStatus === 1018){
+					yearBirthDateStatus=1018;//DIGITS ONLY
 				}else if(checkYearStatus === 1002){
 					yearBirthDateStatus=1012;//Years 4 DIGITS ONLY
 				}else{
@@ -393,11 +422,15 @@ let validateBirthDate = (birthYear) => {
 			}
 		}else if(checkMonthStatus === 1002){
 			yearBirthDateStatus=1010;//Months 2 Digits ONlY
+		}else if(checkMonthStatus === 1018){
+			yearBirthDateStatus=1018;//Digits ONlY
 		}else{
 			yearBirthDateStatus=1011;//Months <=12
 		}
 	}else if(checkDateStatus === 1002){
 		yearBirthDateStatus=1008;//Dates 2 digit only
+	}else if(checkDateStatus === 1018){
+		yearBirthDateStatus=1018//Digits ONlY
 	}else{
 		yearBirthDateStatus=1009;//Dates <=31
 	}
@@ -513,6 +546,11 @@ let validateCheckNameForm = () => {
 				birthYear+ " is a NOT LEAP YEAR";
 				isFormValid=1017;
 				break;
+
+				case 1018:
+				document.getElementById("monthHelp").innerHTML="ENTER DIGITS ONLY";
+				isFormValid=1018;
+				break;
 		}
 		break;
 	}
@@ -584,106 +622,116 @@ let submitAndDeriveAkanName = () => {
 	birthYear = parseInt(document.getElementById("year").value);
 	birthMonth = parseInt(document.getElementById("month").value);
 	birthDate = parseInt(document.getElementById("date").value);
-	gender=selectedGender();
-	switch(validateCheckNameForm()){
-		case 1000:
-		dayOfWeek=caculateWeekDay(birthDate,birthMonth,birthYear);
-		akanName=deriveAkanName(gender,dayOfWeek);
-		if(akanName == 1111){
+	if(validateNumber(birthYear) === 1000 && validateNumber(birthMonth) === 1000 && validateNumber(birthDate) === 1000){
+		gender=selectedGender();
+		switch(validateCheckNameForm()){
+			case 1000:
+			dayOfWeek=caculateWeekDay(birthDate,birthMonth,birthYear);
+			akanName=deriveAkanName(gender,dayOfWeek);
+			if(akanName == 1111){
+				alert='alert-danger';
+				message="<p>Failed to derive akan name. Please select your gender...</p>";
+			}else{
+				alert='alert-success';
+				message="<p>Gender: "+gender+"<br/>Birth Day: "+getDayOfWeek(dayOfWeek)+"<br/>Birth Date: "+birthDate+"-"+getMonthName(birthMonth)+"-"+birthYear
+				+"<br/>Your Akan Name is : <strong>"+akanName +"</strong></p>";
+				clearCheckNameFormAfterSubmission();
+			}
+			break;
+
+			case 1001:
 			alert='alert-danger';
-			message="<p>Failed to derive akan name. Please select your gender...</p>";
-		}else{
-			alert='alert-success';
-			message="<p>Gender: "+gender+"<br/>Birth Date: "+birthDate+"-"+getMonthName(birthMonth)+"-"+birthYear
-			+"<br/>Birth Day: "+getDayOfWeek(dayOfWeek)+"<br/>Your Akan Name is : <strong>"+akanName +"</strong></p>";
-			clearCheckNameFormAfterSubmission();
+			message="<p>Failed to derive akan name. Enter DIGITS ONLY.</p>";
+			break;
+
+			case 1002:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Months MUST have at MOST 2 DIGITS.</p>";
+			break;
+
+			case 1003:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Months MUST NOT be GREATER THAN 12.</p>";
+			break;
+
+			case 1004:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Dates MUST have at MOST 2 DIGITS.</p>";
+			break;
+
+			case 1005:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. The month has at MOST 30 DAYS.</p>";
+			break;
+
+			case 1006:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. The month has at MOST 31 DAYS.</p>";
+			break;
+
+			case 1007:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. The month has at MOST 29 DAYS.</p>";
+			break;
+
+			case 1008:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Dates MUST have at MOST 2 DIGITS.</p>";
+			break;
+
+			case 1009:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Dates MUST NOT be greater than 31 days.</p>";
+			break;
+
+			case 1010:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Months MUST have at MOST 2 DIGITS.</p>";
+			break;
+
+			case 1011:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Months MUST NOT be greater than 12 ALWAYS.</p>";
+			break;
+
+			case 1012:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Years MUST have 4 DIGITS.</p>";
+			break;
+
+			case 1013:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Year MUST NOT be GREATER THAN "+currentYear+"</p>";
+			break;
+
+			case 1014:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Feb(02) has 28 days since  "+birthYear+" is not a leap year</p>";
+			break;
+
+			case 1016:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Feb(02) has 29 days since  "+birthYear+" is a leap year</p>";
+			break;
+
+			case 1017:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Feb(02) has 28 days since  "+birthYear+" is not a leap year</p>";
+			break;
+
+			case 1018:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. PLease provide date of birth in DIGITS ONLY.</p>";
+			break;
+
+			case 1100:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Please select your gender</p>";
+			break;
 		}
-		break;
-
-		case 1001:
+	}else{
 		alert='alert-danger';
-		message="<p>Failed to derive akan name. Enter DIGITS ONLY.</p>";
-		break;
-
-		case 1002:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Months MUST have at MOST 2 DIGITS.</p>";
-		break;
-
-		case 1003:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Months MUST NOT be GREATER THAN 12.</p>";
-		break;
-
-		case 1004:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Dates MUST have at MOST 2 DIGITS.</p>";
-		break;
-
-		case 1005:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. The month has at MOST 30 DAYS.</p>";
-		break;
-
-		case 1006:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. The month has at MOST 31 DAYS.</p>";
-		break;
-
-		case 1007:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. The month has at MOST 29 DAYS.</p>";
-		break;
-
-		case 1008:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Dates MUST have at MOST 2 DIGITS.</p>";
-		break;
-
-		case 1009:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Dates MUST NOT be greater than 31 days.</p>";
-		break;
-
-		case 1010:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Months MUST have at MOST 2 DIGITS.</p>";
-		break;
-
-		case 1011:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Months MUST NOT be greater than 12 ALWAYS.</p>";
-		break;
-
-		case 1012:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Years MUST have 4 DIGITS.</p>";
-		break;
-
-		case 1013:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Year MUST NOT be GREATER THAN "+currentYear+"</p>";
-		break;
-
-		case 1014:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Feb(02) has 28 days since  "+birthYear+" is not a leap year</p>";
-		break;
-
-		case 1016:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Feb(02) has 29 days since  "+birthYear+" is a leap year</p>";
-		break;
-
-		case 1017:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Feb(02) has 28 days since  "+birthYear+" is not a leap year</p>";
-		break;
-
-		case 1100:
-		alert='alert-danger';
-		message="<p>Failed to derive akan name. Please select your gender</p>";
-		break;
+		message="<p>Failed to derive akan name. PLease provide date of birth in DIGITS ONLY.</p>";	
 	}
 	displayNotification(notificationPanel,alert,message);
 }
