@@ -20,6 +20,7 @@ body{
 }
 
 h1,h2,h3,h4,h5,h6,a{
+	color:#45A29E;
 	text-transform: uppercase;
 }
 
@@ -38,8 +39,16 @@ hr{
 	border-bottom: 2px solid #0F9D58 !important;
 }
 
-.btn-success{
+.btn-success,.btn-success:focus,.btn-success:hover{
+	border:1px solid  #45A29E;
+	background-color: #45A29E;
 	margin-left: 15%;
+}
+
+.btn-dflt,.btn-dflt:focus,.btn-dflt:hover{
+	color:#fff;
+	border:1px solid  #5a5a5a;
+	background-color: #5a5a5a;
 }
 /***********************
 
@@ -48,11 +57,16 @@ hr{
 ******************************/
 .jumbotron{
 	color:#fff;
-	background-image: url('../../assets/images/backgrounds/hero.jpg');
+	background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),url('../../assets/images/backgrounds/akan_kwame.jpg');
+	background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .navbar a,.navbar-toggler-icon{
-	color:#fff;
+	color:#45A29E;
 	font-weight: 600;
 }
 
