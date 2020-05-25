@@ -119,6 +119,17 @@ hr{
 .akan-content-body form{
 	padding: 2% 5% 2% 5%;
 }
+
+.alert{
+	margin:2% 0% 0% 0%;
+	padding:2% 2% 2% 2%;
+}
+
+.alert p{
+	line-height: 25px;
+	margin-top:2%;
+	text-transform: uppercase;
+}
 /***********************
 
 	AKAN-CONTENT-FOOT

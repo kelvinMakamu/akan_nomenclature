@@ -7,6 +7,7 @@ const thirtyDaysMonth=[4,6,9,11];
 const thirtyOneDaysMonth=[1,3,5,7,8,10,12];
 const femaleAkanNames=['Akosua','Adwoa','Abenaa','Akua','Yaa','Afua','Ama'];
 const maleAkanNames=['Kwasi','Kwadwo','Kwabena','Kwaku','Yaw','Kofi','Kwame'];
+const notificationPanel='akan-message-panel';
 let currentDate= new Date();
 let currentMonth=currentDate.getMonth()+1;
 let currentYear=currentDate.getFullYear();
@@ -125,6 +126,15 @@ let clearCheckNameForm = () => {
   for(let counter=0;counter<genderChoices.length;counter++){
     genderChoices[counter].checked = false;
   }
+}
+
+let displayNotification = (notificationPanel,alert,message) => {
+	let notification ="<div class='alert "+alert+"' role='alert'>"+message+"</div>";
+	document.getElementById(notificationPanel).innerHTML+=notification;
+}
+
+let clearNotificationPanel = () => {
+	document.getElementById('akan-message-panel').innerHTML="";
 }
 /*************
 
@@ -458,6 +468,7 @@ let deriveAkanName = (gender,weekDay) => {
 }
 
 let submitAndDeriveAkanName = () => {
+	clearNotificationPanel();
 	switch(validateCheckNameForm()){
 		case 1000:
 		birthYear = parseInt(document.getElementById("year").value);
@@ -466,7 +477,54 @@ let submitAndDeriveAkanName = () => {
 		gender=selectedGender();
 		dayOfWeek=caculateWeekDay(birthDate,birthMonth,birthYear);
 		akanName=deriveAkanName(gender,dayOfWeek);
-		alert(akanName);
+		if(akanName == 1111){
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Please select your gender.</p>";
+		}else{
+			alert='alert-success';
+			message="<p>Your Akan Name is : <strong>"+akanName +"</strong></p>";
+		}
+		break;
+
+		case 1008:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Dates MUST have at MOST 2 DIGITS.</p>";
+		break;
+
+		case 1009:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Dates MUST NOT be greater than 31 days.</p>";
+		break;
+
+		case 1010:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Months MUST have at MOST 2 DIGITS.</p>";
+		break;
+
+		case 1011:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Months MUST NOT be greater than 12 ALWAYS.</p>";
+		break;
+
+		case 1012:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Years MUST have 4 DIGITS.</p>";
+		break;
+
+		case 1013:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Year MUST NOT be GREATER THAN "+currentYear+"</p>";
+		break;
+
+		case 1014:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. February has 28 days since  "+birthYear+" is not a leap year</p>";
+		break;
+
+		default:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name due to atechnical error occurred. Our engineers are working to resolve the hitch.</p>";
 		break;
 	}
+	displayNotification(notificationPanel,alert,message);
 }
