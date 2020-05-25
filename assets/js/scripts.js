@@ -90,6 +90,7 @@ let clearFormErrorMessages= (errorType) => {
 		document.getElementById("dateHelp").innerHTML="";
 		document.getElementById("monthHelp").innerHTML="";
 		document.getElementById("yearHelp").innerHTML="";
+		document.getElementById("genderHelp").innerHTML="";
 		break;
 	}
 }
@@ -118,6 +119,7 @@ let displayFooterContent = (containerClass) =>{
 }
 
 let clearCheckNameForm = () => {
+	clearNotificationPanel();
 	clearFormErrorMessages("all");
 	document.getElementById('date').value = "";
 	document.getElementById('month').value = "";
@@ -281,6 +283,11 @@ let validateYear = (birthYear) => {
 				document.getElementById("monthHelp").innerHTML="Invalid Input. February has 28 days since "+
 				birthYear+ " is not a LEAP YEAR";
 				break;
+
+				case 1015:
+				document.getElementById("monthHelp").innerHTML="Invalid Input. February has 29 days since "+
+				birthYear+ " is a LEAP YEAR";
+				break;
 			}
 		}else if(checkStatus == 1002){
 			yearDate.innerHTML="Year MUST BE 4 DIGITS ONLY.";
@@ -306,6 +313,15 @@ let validateBirthDate = (birthYear) => {
 			if(checkYearStatus === 1000){
 				switch(isLeapYear(birthYear)){
 					case 1000:
+					if(parseInt(birthMonth) === 2){
+						if(parseInt(birthDate) > 29){
+							yearBirthDateStatus=1015;//Invalid Input. February has 29 days since not a leap Year
+						}else{
+							yearBirthDateStatus=1000;
+						}
+					}else{
+						yearBirthDateStatus=1000;
+					}	
 					yearBirthDateStatus=1000;
 					break;
 
@@ -479,7 +495,7 @@ let submitAndDeriveAkanName = () => {
 		akanName=deriveAkanName(gender,dayOfWeek);
 		if(akanName == 1111){
 			alert='alert-danger';
-			message="<p>Failed to derive akan name. Please select your gender.</p>";
+			message="<p>Failed to derive akan name. Please select your gender...</p>";
 		}else{
 			alert='alert-success';
 			message="<p>Your Akan Name is : <strong>"+akanName +"</strong></p>";
@@ -521,9 +537,14 @@ let submitAndDeriveAkanName = () => {
 		message="<p>Failed to derive akan name. February has 28 days since  "+birthYear+" is not a leap year</p>";
 		break;
 
-		default:
+		case 1015:
 		alert='alert-danger';
-		message="<p>Failed to derive akan name due to atechnical error occurred. Our engineers are working to resolve the hitch.</p>";
+		message="<p>Failed to derive akan name. February has 29 days since  "+birthYear+" is a leap year</p>";
+		break;
+
+		case 1100:
+		alert='alert-danger';
+		message="<p>Failed to derive akan name. Please select your gender</p>";
 		break;
 	}
 	displayNotification(notificationPanel,alert,message);
