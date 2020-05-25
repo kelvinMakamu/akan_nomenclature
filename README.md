@@ -23,6 +23,17 @@ To start using this project:
 * `atom . `*for ATOM*
 * `sublime .` *for SUBLIME*
 * `code . `*for Visual Studio Code*
+## Behavior Driven Development (BDD)
+The application has the following specifications:&nbsp;
+Behaviour   | Input Example  | Output Example
+------------| -------------  | --------------
+SUNDAY      | Akosua   | Kwasi
+MONDAY      | Adwoa    | Kwadwo
+TUESDAY     | Abenaa   | Kwabena
+WEDNESDAY   | Akua     | Kwaku
+THURSDAY    | Yaa      | Yaw
+FRIDAY      | Afua     | Kofi
+SATURDAY    | Ama      | Kwame
 ## Technologies Used
 * HTML5
 * CSS3
