@@ -3,6 +3,7 @@
 	CONSTANTS
 
 *******************/
+const monthNames=['Jan','Feb','Mar','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
 const thirtyDaysMonth=[4,6,9,11];
 const thirtyOneDaysMonth=[1,3,5,7,8,10,12];
 const femaleAkanNames=['Akosua','Adwoa','Abenaa','Akua','Yaa','Afua','Ama'];
@@ -118,6 +119,17 @@ let displayFooterContent = (containerClass) =>{
 	document.getElementById(containerClass).innerHTML+=content;
 }
 
+let clearCheckNameFormAfterSubmission = () => {
+	clearFormErrorMessages("all");
+	document.getElementById('date').value = "";
+	document.getElementById('month').value = "";
+	document.getElementById('year').value = "";
+	let genderChoices = document.getElementsByName("akan-gender");
+  for(let counter=0;counter<genderChoices.length;counter++){
+    genderChoices[counter].checked = false;
+  }
+}
+
 let clearCheckNameForm = () => {
 	clearNotificationPanel();
 	clearFormErrorMessages("all");
@@ -137,6 +149,10 @@ let displayNotification = (notificationPanel,alert,message) => {
 
 let clearNotificationPanel = () => {
 	document.getElementById('akan-message-panel').innerHTML="";
+}
+
+let getMonthName = (monthNumber) => {
+	return monthNames[parseInt(monthNumber-1)];
 }
 /*************
 
@@ -497,7 +513,9 @@ let submitAndDeriveAkanName = () => {
 			message="<p>Failed to derive akan name. Please select your gender...</p>";
 		}else{
 			alert='alert-success';
-			message="<p>Your Akan Name is : <strong>"+akanName +"</strong></p>";
+			message="<p>Birth Date: "+birthDate+"-"+getMonthName(birthMonth)+"-"+birthYear+"<br/> Gender: "+gender
+			+"<br/>Your Akan Name is : <strong>"+akanName +"</strong></p>";
+			clearCheckNameFormAfterSubmission();
 		}
 		break;
 
