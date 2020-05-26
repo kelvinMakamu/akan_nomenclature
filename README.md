@@ -2,7 +2,7 @@
 ## Brief Description<br>
 Akan names are derived from Ghanian culture. Frequently in Ghana, children are given their first name as a 'day name' which corresponds to the day in the week they were born.<br><br>
 This application derives a user's Akan Name depending on the user's date of birth and gender.<br><br>
-The application calculates the day of the week an individual was born from the date of birth, and then derives an Akan name depending on the day of week and gender as shown below:<br>
+The application calculates the day of the week an individual was born from the date of birth, and then derives an Akan name depending on the day of week and gender as shown below:<br><br>
 
 DAY OF WEEK | FEMALE   | MALE
 :------------| :---------| :-------
