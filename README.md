@@ -31,9 +31,9 @@ It checks if date input is empty      | BLANK   | Failed to derive akan name. Pl
 It checks if month input is empty       | BLANK    | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
 It checks if year input is empty      | BLANK   | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
 It checks if gender is not selected  | BLANK   | Failed to derive akan name. Please select your gender
-It checks if date is not a digit    | 1s or ssss      | Yaw
-It checks if month is not a digit      | 1s or ssss     | Kofi
-It checks if year is not a digit   | 1s or ssss     | Kwame
+It checks if date is not a digit    | 1s or ssss      | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
+It checks if month is not a digit      | 1s or ssss     | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
+It checks if year is not a digit   | 1s or ssss     | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
 It checks date is greater than 31  | 45      | Kwame
 It checks month is greater than 12   | 15    | Kwame
 It checks if year is more than 4 digits  | 20209      | Kwame
