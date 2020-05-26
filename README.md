@@ -27,10 +27,10 @@ To start using this project:
 The application has the following specifications:&nbsp;
 Behaviour   | Input Example  | Output Example
 ------------| -------------  | --------------
-It checks if date input is empty      | BLANK   | Kwasi
-It checks if month input is empty       | BLANK    | Kwadwo
-It checks if year input is empty      | BLANK   | Kwabena
-It checks if gender is not selected  | BLANK   | Kwaku
+It checks if date input is empty      | BLANK   | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
+It checks if month input is empty       | BLANK    | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
+It checks if year input is empty      | BLANK   | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
+It checks if gender is not selected  | BLANK   | Failed to derive akan name. Please select your gender
 It checks if date is not a digit    | 1s or ssss      | Yaw
 It checks if month is not a digit      | 1s or ssss     | Kofi
 It checks if year is not a digit   | 1s or ssss     | Kwame
