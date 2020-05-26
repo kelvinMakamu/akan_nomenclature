@@ -56,9 +56,9 @@ It returns the Akan Name when date of birth and gender values are provided  | Ge
 * GIT
 ## Live Website<br>
 * [Akan-Names](https://kelvinmakamu.github.io/akan_nomenclature/)
-## Contact Info<br>
+## Contact Information<br>
 * [Kelvin Makamu](mailto:profmakamu@gmail.com?subject=[GitHub]%20Private%20and%20Confidential)
-## License And Copyright Info<br>
+## License And Copyright Information<br>
 MIT License
 
 Copyright (c) 2020 Akan-Names
