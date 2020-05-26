@@ -47,7 +47,7 @@ It checks if year is not a Leap Year, and the month of Feb(2), has 29 as the dat
 It checks if birth date provided is in the future   | Date:29<br>Month: 12<br> Year: 2020      | Failed to derive akan name. Birth date cannot be in the future.
 It checks if month and year provided is in the future   | Month: 7 <br>Year: 2020   | Failed to derive akan name. Birth date cannot be in the future.
 It returns the day of the week from the date of birth provided   | Date:26<br>Month: 5<br> Year: 2020     | Tuesday
-It returns the Akan Name when date of birth and gender values are provided  |  Gender: Male<br>Date:26<br>Month: 5<br> Year: 2020 | Gender: MALE<br>Birth Day: Tuesday<br>Birth Date: 26-May-2020<br>Your Akan Name is : Kwabena
+It returns the Akan Name when date of birth and gender values are provided  | Gender: MALE<br>Birth Day: Tuesday<br>Birth Date: 26-May-2020<br>Your Akan Name is : Kwabena
 ## Technologies Used
 * HTML5
 * CSS3
