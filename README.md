@@ -5,7 +5,7 @@ This application derives a user's Akan Name depending on the user's date of birt
 The application calculates the day of the week an individual was born from the date of birth, and then derives an Akan name depending on the day of week and gender as shown below:<br>
 
 DAY OF WEEK | FEMALE   | MALE
-------------| ---------| -------
+:------------| :---------| :-------
 SUNDAY      | Akosua   | Kwasi
 MONDAY      | Adwoa    | Kwadwo
 TUESDAY     | Abenaa   | Kwabena
@@ -26,7 +26,7 @@ To start using this project:
 ## Behavior Driven Development (BDD)
 The application has the following specifications:<br><br>
 Behaviour   | Input Example  | Output Example
-------------| -------------  | --------------
+:------------| :-------------  | :--------------
 It checks if date input is empty      | BLANK   | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
 It checks if month input is empty       | BLANK    | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
 It checks if year input is empty      | BLANK   | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
