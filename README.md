@@ -34,8 +34,8 @@ It checks if gender is not selected  | BLANK   | Failed to derive akan name. Ple
 It checks if date is not a digit    | 1s or ssss      | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
 It checks if month is not a digit      | 1s or ssss     | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
 It checks if year is not a digit   | 1s or ssss     | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
-It checks date is greater than 31  | 45      | Kwame
-It checks month is greater than 12   | 15    | Kwame
+It checks date is greater than 31  | 45      | Failed to derive akan name. Dates MUST NOT be greater than 31 days.
+It checks month is greater than 12   | 15    | Failed to derive akan name. Months MUST NOT be GREATER THAN 12.
 It checks if year is more than 4 digits  | 20209      | Kwame
 It checks if year is less than 4 digits  | 202      | Kwame
 It checks if month is greater than 2 digits   |123     | Kwame
