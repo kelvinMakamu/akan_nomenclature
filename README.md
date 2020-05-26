@@ -36,10 +36,10 @@ It checks if month is not a digit      | 1s or ssss     | Failed to derive akan 
 It checks if year is not a digit   | 1s or ssss     | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
 It checks date is greater than 31  | 45      | Failed to derive akan name. Dates MUST NOT be greater than 31 days.
 It checks month is greater than 12   | 15    | Failed to derive akan name. Months MUST NOT be GREATER THAN 12.
-It checks if year is more than 4 digits  | 20209      | Kwame
-It checks if year is less than 4 digits  | 202      | Kwame
-It checks if month is greater than 2 digits   |123     | Kwame
-It checks if date is greater than 2 digits   | 321    | Kwame
+It checks if year is more than 4 digits  | 20209      | Failed to derive akan name. Years MUST have 4 DIGITS.
+It checks if year is less than 4 digits  | 202      | Failed to derive akan name. Years MUST have 4 DIGITS.
+It checks if month is greater than 2 digits   |123     | Failed to derive akan name. Months MUST have at MOST 2 DIGITS.
+It checks if date is greater than 2 digits   | 321    | Failed to derive akan name. Dates MUST have at MOST 2 DIGITS
 It checks if year is greater than 2020, current year   | 2030     | Kwame
 It checks if month of Feb (2) has input date greater than 29   | 30      | Kwame
 It checks if a 30-day month has an input date greater than 30  | 31     | Kwame
