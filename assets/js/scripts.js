@@ -684,16 +684,19 @@ let submitAndDeriveAkanName = () => {
 			break;
 
 			case 1002:
+			case 1010:
 			alert='alert-danger';
 			message="<p>Failed to derive akan name. Months MUST have at MOST 2 DIGITS.</p>";
 			break;
 
 			case 1003:
+			case 1011:
 			alert='alert-danger';
 			message="<p>Failed to derive akan name. Months MUST NOT be GREATER THAN 12.</p>";
 			break;
 
 			case 1004:
+			case 1008:
 			alert='alert-danger';
 			message="<p>Failed to derive akan name. Dates MUST have at MOST 2 DIGITS.</p>";
 			break;
@@ -713,24 +716,9 @@ let submitAndDeriveAkanName = () => {
 			message="<p>Failed to derive akan name. The month has at MOST 29 DAYS.</p>";
 			break;
 
-			case 1008:
-			alert='alert-danger';
-			message="<p>Failed to derive akan name. Dates MUST have at MOST 2 DIGITS.</p>";
-			break;
-
 			case 1009:
 			alert='alert-danger';
 			message="<p>Failed to derive akan name. Dates MUST NOT be greater than 31 days.</p>";
-			break;
-
-			case 1010:
-			alert='alert-danger';
-			message="<p>Failed to derive akan name. Months MUST have at MOST 2 DIGITS.</p>";
-			break;
-
-			case 1011:
-			alert='alert-danger';
-			message="<p>Failed to derive akan name. Months MUST NOT be greater than 12 ALWAYS.</p>";
 			break;
 
 			case 1012:
@@ -745,6 +733,7 @@ let submitAndDeriveAkanName = () => {
 			break;
 
 			case 1014:
+			case 1017:
 			alert='alert-danger';
 			message="<p>Failed to derive akan name. Feb (02) has 28 days since  "
 			+birthYear+" is not a leap year</p>";
@@ -756,20 +745,14 @@ let submitAndDeriveAkanName = () => {
 			+birthYear+" is a leap year</p>";
 			break;
 
-			case 1017:
-			alert='alert-danger';
-			message="<p>Failed to derive akan name. Feb (02) has 28 days since  "
-			+birthYear+" is not a leap year</p>";
-			break;
-
 			case 1018:
 			alert='alert-danger';
-			message="<p>Failed to derive akan name. PLease provide date of birth in DIGITS ONLY.</p>";
+			message="<p>Failed to derive akan name. Please provide date of birth in DIGITS ONLY.</p>";
 			break;
 
 			case 1019:
 			alert='alert-danger';
-			message="<p>Failed to derive akan name. Birth Date cannot be in the future.</p>";
+			message="<p>Failed to derive akan name. Birth date cannot be in the future.</p>";
 			break;
 
 			case 1100:
@@ -779,7 +762,7 @@ let submitAndDeriveAkanName = () => {
 		}
 	}else{
 		alert='alert-danger';
-		message="<p>Failed to derive akan name. PLease provide date of birth in DIGITS ONLY.</p>";	
+		message="<p>Failed to derive akan name. Please provide date of birth in DIGITS ONLY.</p>";	
 	}
 	displayNotification(notificationPanel,alert,message);
 }
