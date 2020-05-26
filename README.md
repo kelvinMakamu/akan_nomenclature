@@ -27,13 +27,27 @@ To start using this project:
 The application has the following specifications:&nbsp;
 Behaviour   | Input Example  | Output Example
 ------------| -------------  | --------------
-SUNDAY      | Akosua   | Kwasi
-MONDAY      | Adwoa    | Kwadwo
-TUESDAY     | Abenaa   | Kwabena
-WEDNESDAY   | Akua     | Kwaku
-THURSDAY    | Yaa      | Yaw
-FRIDAY      | Afua     | Kofi
-SATURDAY    | Ama      | Kwame
+It checks if date input is empty      | BLANK   | Kwasi
+It checks if month input is empty       | BLANK    | Kwadwo
+It checks if year input is empty      | BLANK   | Kwabena
+It checks if gender is not selected  | BLANK   | Kwaku
+It checks if date is not a digit    | 1s or ssss      | Yaw
+It checks if month is not a digit      | 1s or ssss     | Kofi
+It checks if year is not a digit   | 1s or ssss     | Kwame
+It checks date is greater than 31  | 45      | Kwame
+It checks month is greater than 12   | 15    | Kwame
+It checks if year is more than 4 digits  | 20209      | Kwame
+It checks if year is less than 4 digits  | 202      | Kwame
+It checks if month is greater than 2 digits   |123     | Kwame
+It checks if date is greater than 2 digits   | 321    | Kwame
+It checks if year is greater than 2020, current year   | 2030     | Kwame
+It checks if month of Feb (2) has input date greater than 29   | 30      | Kwame
+It checks if a 30-day month has an input date greater than 30  | 31     | Kwame
+It checks if year is not a Leap Year, and the month of Feb(2), has 29 as the date input  | 29      | Kwame
+It checks if birth date provided is in the future   | Date:29&nbsp;Month: 12&nbsp; Year: 2020      | Kwame
+It checks if month and year provided is in the future   | Month: 7 &nbsp;Year: 2020   | Kwame
+It returns the day of the week from the date of birth provided   | Date:26&nbsp;Month: 5&nbsp; Year: 2020     | Kwame
+It returns the Akan Name when date of birth and gender values are provided  |  Gender: Male&nbsp;Date:26&nbsp;Month: 5&nbsp; Year: 2020 | Kwame
 ## Technologies Used
 * HTML5
 * CSS3
