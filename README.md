@@ -15,7 +15,7 @@ FRIDAY      | Afua     | Kofi
 SATURDAY    | Ama      | Kwame
 
 ## Authors <br>
-* [kelvinMakamu](https://github.com/kelvinMakamu)
+* [Kelvin Makamu](https://github.com/kelvinMakamu)
 ## Set Up Instructions <br>
 To start using this project:<br>
 * `git clone https://github.com/kelvinMakamu/akan_nomenclature.git`
