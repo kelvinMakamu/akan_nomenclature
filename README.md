@@ -44,10 +44,10 @@ It checks if year is greater than 2020, current year   | 2030     | Failed to de
 It checks if month of Feb (2) has input date greater than 29   | 30      | Failed to derive akan name. The month has at MOST 29 DAYS.
 It checks if a 30-day month has an input date greater than 30  | 31     | Failed to derive akan name. The month has at MOST 30 DAYS.
 It checks if year is not a Leap Year, and the month of Feb(2), has 29 as the date input  | Date:29<br>Year:2019 | Failed to derive akan name. Feb (02) has 28 days since 2019 is not a leap year
-It checks if birth date provided is in the future   | Date:29<br>Month: 12<br> Year: 2020      | Failed to derive akan name. Birth date cannot be in the future.
+It checks if birth date provided is in the future   | Date:29<br>Month: 12<br> Year: 2020 | Failed to derive akan name. Birth date cannot be in the future.
 It checks if month and year provided is in the future   | Month: 7 <br>Year: 2020   | Failed to derive akan name. Birth date cannot be in the future.
-It returns the day of the week from the date of birth provided   | Date:26<br>Month: 5<br> Year: 2020     | Tuesday
-It returns the Akan Name when date of birth and gender values are provided  | Gender: MALE<br>Birth Day: Tuesday<br>Birth Date: 26-May-2020<br>Your Akan Name is : Kwabena
+It returns the day of the week from the date of birth provided   | Date:26<br>Month: 5<br> Year: 2020 | Tuesday
+It returns the Akan Name when date of birth and gender values are provided  | Gender: Male<br>Date:26<br>Month: 5<br> Year: 2020 | Gender: MALE<br>Birth Day: Tuesday<br>Birth Date: 26-May-2020<br>Your Akan Name is : Kwabena
 ## Technologies Used
 * HTML5
 * CSS3
