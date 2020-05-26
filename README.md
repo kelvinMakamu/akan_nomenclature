@@ -1,8 +1,8 @@
 # Akan Names
 ## Brief Description
-Akan names are derived from Ghanian culture. Frequently in Ghana, children are given their first name as a 'day name' which corresponds to the day in the week they were born.&nbsp;&nbsp;   
-This application derives a user's Akan Name depending on the user's date of birth and gender.&nbsp; &nbsp;  
-The application calculates the day of the week an individual was born from the date of birth, and then derives an Akan name depending on the day of week and gender as shown below:&nbsp; &nbsp; 
+Akan names are derived from Ghanian culture. Frequently in Ghana, children are given their first name as a 'day name' which corresponds to the day in the week they were born.<br><br>
+This application derives a user's Akan Name depending on the user's date of birth and gender.<br><br>
+The application calculates the day of the week an individual was born from the date of birth, and then derives an Akan name depending on the day of week and gender as shown below:<br>
 
 DAY OF WEEK | FEMALE   | MALE
 ------------| ---------| -------
@@ -24,7 +24,7 @@ To start using this project:
 * `sublime .` *for SUBLIME*
 * `code . `*for Visual Studio Code*
 ## Behavior Driven Development (BDD)
-The application has the following specifications:&nbsp;
+The application has the following specifications:<br><br>
 Behaviour   | Input Example  | Output Example
 ------------| -------------  | --------------
 It checks if date input is empty      | BLANK   | Failed to derive akan name. Please provide date of birth in DIGITS ONLY.
@@ -43,11 +43,11 @@ It checks if date is greater than 2 digits   | 321    | Failed to derive akan na
 It checks if year is greater than 2020, current year   | 2030     | Failed to derive akan name. Birth date cannot be in the future.
 It checks if month of Feb (2) has input date greater than 29   | 30      | Failed to derive akan name. The month has at MOST 29 DAYS.
 It checks if a 30-day month has an input date greater than 30  | 31     | Failed to derive akan name. The month has at MOST 30 DAYS.
-It checks if year is not a Leap Year, and the month of Feb(2), has 29 as the date input  | Date:29&nbsp;Year:2019 | Failed to derive akan name. Feb (02) has 28 days since 2019 is not a leap year
-It checks if birth date provided is in the future   | Date:29&nbsp;Month: 12&nbsp; Year: 2020      | Failed to derive akan name. Birth date cannot be in the future.
-It checks if month and year provided is in the future   | Month: 7 &nbsp;Year: 2020   | Failed to derive akan name. Birth date cannot be in the future.
-It returns the day of the week from the date of birth provided   | Date:26&nbsp;Month: 5&nbsp; Year: 2020     | Tuesday
-It returns the Akan Name when date of birth and gender values are provided  |  Gender: Male&nbsp;Date:26&nbsp;Month: 5&nbsp; Year: 2020 | Gender: MALE&nbsp;Birth Day: Tuesday&nbsp;Birth Date: 26-May-2020&nbsp;Your Akan Name is : Kwabena
+It checks if year is not a Leap Year, and the month of Feb(2), has 29 as the date input  | Date:29<br>Year:2019 | Failed to derive akan name. Feb (02) has 28 days since 2019 is not a leap year
+It checks if birth date provided is in the future   | Date:29<br>Month: 12<br> Year: 2020      | Failed to derive akan name. Birth date cannot be in the future.
+It checks if month and year provided is in the future   | Month: 7 <br>Year: 2020   | Failed to derive akan name. Birth date cannot be in the future.
+It returns the day of the week from the date of birth provided   | Date:26<br>Month: 5<br> Year: 2020     | Tuesday
+It returns the Akan Name when date of birth and gender values are provided  |  Gender: Male<br>Date:26<br>Month: 5<br> Year: 2020 | Gender: MALE<br>Birth Day: Tuesday<br>Birth Date: 26-May-2020<br>Your Akan Name is : Kwabena
 ## Technologies Used
 * HTML5
 * CSS3
