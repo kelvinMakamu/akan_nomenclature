@@ -17,9 +17,10 @@ const numbersPattern = /^[0-9]+$/;
 	VARIABLES
 
 ****************************/
-let currentDate= new Date();
-let currentMonth=currentDate.getMonth()+1;
-let currentYear=currentDate.getFullYear();
+let today= new Date();
+let currentDate=today.getDate();
+let currentMonth=today.getMonth()+1;
+let currentYear=today.getFullYear();
 
 /***********************
 
@@ -359,6 +360,10 @@ let validateYear = (birthYear) => {
 				case 1018:
 				document.getElementById("monthHelp").innerHTML="ENTER DIGITS ONLY";
 				break;
+
+				case 1019:
+				document.getElementById("dateHelp").innerHTML="Birth Date cannot be in the future.";
+				break;
 			}
 		}else if(checkStatus == 1018){
 			yearDate.innerHTML="Year MUST BE DIGITS ONLY.";
@@ -388,39 +393,48 @@ let validateBirthDate = (birthYear) => {
 		if(checkMonthStatus === 1000){
 			validMonthStatus=validateMonth(birthMonth);
 			if(validMonthStatus === 1000){
-				checkYearStatus=checkNumberLimit(birthYear,'year');
-				if(checkYearStatus === 1000){
-					switch(isLeapYear(birthYear)){
-						case 1000:
-						if(birthMonth === 2){
-							if(birthDate > 29){
-								yearBirthDateStatus=1016;
+				futureStatus = checkIfBirthDateIsInFuture(birthDate,birthMonth,birthYear);
+				switch(futureStatus){
+					case 1000:
+					checkYearStatus=checkNumberLimit(birthYear,'year');
+					if(checkYearStatus === 1000){
+						switch(isLeapYear(birthYear)){
+							case 1000:
+							if(birthMonth === 2){
+								if(birthDate > 29){
+									yearBirthDateStatus=1016;
+								}else{
+									yearBirthDateStatus=1000;
+								}
 							}else{
 								yearBirthDateStatus=1000;
-							}
-						}else{
-							yearBirthDateStatus=1000;
-						}	
-						break;
+							}	
+							break;
 
-						case 1015:
-						if(birthMonth === 2){
-							if(birthDate > 28){
-								yearBirthDateStatus=1014;
+							case 1015:
+							if(birthMonth === 2){
+								if(birthDate > 28){
+									yearBirthDateStatus=1014;
+								}else{
+									yearBirthDateStatus=1000;
+								}
 							}else{
 								yearBirthDateStatus=1000;
-							}
-						}else{
-							yearBirthDateStatus=1000;
-						}	
-						break;
+							}	
+							break;
+						}
+					}else if(checkYearStatus === 1018){
+						yearBirthDateStatus=1018;
+					}else if(checkYearStatus === 1002){
+						yearBirthDateStatus=1012;
+					}else{
+						yearBirthDateStatus=1013;
 					}
-				}else if(checkYearStatus === 1018){
-					yearBirthDateStatus=1018;
-				}else if(checkYearStatus === 1002){
-					yearBirthDateStatus=1012;
-				}else{
-					yearBirthDateStatus=1013;
+					break;
+
+					case 1019:
+					yearBirthDateStatus=1019;
+					break;
 				}
 			}else{
 				yearBirthDateStatus=validMonthStatus;
@@ -440,6 +454,20 @@ let validateBirthDate = (birthYear) => {
 		yearBirthDateStatus=1009;
 	}
 	return yearBirthDateStatus;
+}
+
+let checkIfBirthDateIsInFuture = (birthDate, birthMonth, birthYear) => {
+	if(parseInt(birthYear) > parseInt(currentYear) ||
+		(parseInt(birthYear) >= parseInt(currentYear) &&
+		 parseInt(birthMonth) >= parseInt(currentMonth) &&
+		 parseInt(birthDate) > parseInt(currentDate)) ||
+		 (parseInt(birthYear) >= parseInt(currentYear) &&
+		 parseInt(birthMonth) > parseInt(currentMonth))){
+		futureStatus=1019;
+	}else{
+		futureStatus=1000;
+	}
+	return futureStatus;
 }
 
 let selectedGender = () => {
@@ -555,6 +583,11 @@ let validateCheckNameForm = () => {
 				case 1018:
 				document.getElementById("monthHelp").innerHTML="ENTER DIGITS ONLY";
 				isFormValid=1018;
+				break;
+
+				case 1019:
+				document.getElementById("dateHelp").innerHTML="Birth Date cannot be in the future.";
+				isFormValid=1019;
 				break;
 		}
 		break;
@@ -732,6 +765,11 @@ let submitAndDeriveAkanName = () => {
 			case 1018:
 			alert='alert-danger';
 			message="<p>Failed to derive akan name. PLease provide date of birth in DIGITS ONLY.</p>";
+			break;
+
+			case 1019:
+			alert='alert-danger';
+			message="<p>Failed to derive akan name. Birth Date cannot be in the future.</p>";
 			break;
 
 			case 1100:
