@@ -46,7 +46,7 @@ It checks if a 30-day month has an input date greater than 30  | 31     | Failed
 It checks if year is not a Leap Year, and the month of Feb(2), has 29 as the date input  | Date:29&nbsp;Year:2019 | Failed to derive akan name. Feb (02) has 28 days since 2019 is not a leap year
 It checks if birth date provided is in the future   | Date:29&nbsp;Month: 12&nbsp; Year: 2020      | Failed to derive akan name. Birth date cannot be in the future.
 It checks if month and year provided is in the future   | Month: 7 &nbsp;Year: 2020   | Failed to derive akan name. Birth date cannot be in the future.
-It returns the day of the week from the date of birth provided   | Date:26&nbsp;Month: 5&nbsp; Year: 2020     | Kwame
+It returns the day of the week from the date of birth provided   | Date:26&nbsp;Month: 5&nbsp; Year: 2020     | Tuesday
 It returns the Akan Name when date of birth and gender values are provided  |  Gender: Male&nbsp;Date:26&nbsp;Month: 5&nbsp; Year: 2020 | Kwame
 ## Technologies Used
 * HTML5
