@@ -40,7 +40,7 @@ It checks if year is more than 4 digits  | 20209      | Failed to derive akan na
 It checks if year is less than 4 digits  | 202      | Failed to derive akan name. Years MUST have 4 DIGITS.
 It checks if month is greater than 2 digits   |123     | Failed to derive akan name. Months MUST have at MOST 2 DIGITS.
 It checks if date is greater than 2 digits   | 321    | Failed to derive akan name. Dates MUST have at MOST 2 DIGITS
-It checks if year is greater than 2020, current year   | 2030     | Kwame
+It checks if year is greater than 2020, current year   | 2030     | Failed to derive akan name. Birth date cannot be in the future.
 It checks if month of Feb (2) has input date greater than 29   | 30      | Kwame
 It checks if a 30-day month has an input date greater than 30  | 31     | Kwame
 It checks if year is not a Leap Year, and the month of Feb(2), has 29 as the date input  | 29      | Kwame
