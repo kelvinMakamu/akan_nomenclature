@@ -90,14 +90,7 @@ let clearCheckNameFormAfterSubmission = () => {
 
 let clearCheckNameForm = () => {
 	clearNotificationPanel();
-	clearFormErrorMessages("all");
-	document.getElementById('date').value = "";
-	document.getElementById('month').value = "";
-	document.getElementById('year').value = "";
-	let genderChoices = document.getElementsByName("akan-gender");
-  for(let counter=0;counter<genderChoices.length;counter++){
-    genderChoices[counter].checked = false;
-  }
+	clearCheckNameFormAfterSubmission();
 }
 /***********************
 
